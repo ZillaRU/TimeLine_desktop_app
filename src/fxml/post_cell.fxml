@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 <fx:root type="javafx.scene.control.ListCell" xmlns:fx="http://javafx.com/fxml">
-    <VBox>
+    <VBox fx:id="postBox">
         <children>
         <Label fx:id="username"/>
         <Label fx:id="content"/>

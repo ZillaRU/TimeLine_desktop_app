@@ -35,38 +35,39 @@ public class LoginController implements Initializable {
     @FXML
     protected void handleLogInButtonAction(ActionEvent event) throws SQLException {
         Window owner = signInButton.getScene().getWindow();
-        if(nameField.getText().isEmpty()) {
-            AlertHelper.showAlert( Alert.AlertType.ERROR, owner, "Form Error!",
-                    "Please enter your username");
-            return;
-        }
-
-        if(passwordField.getText().isEmpty()) {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                    "Please enter your password");
-            return;
-        }
-        int userExist = 0;
-        String inputName=nameField.getText();
-        String inputPassword=passwordField.getText();
-        String stmt="SELECT count(*) as userExist\n" +
-                "FROM userinfo\n"+
-                "WHERE username='"+inputName+
-                "'\nAND password='"+inputPassword+"';";
-        System.out.println( stmt );
-        ResultSet resultSet=DBInterface.getResultSet( stmt );
-        if (resultSet != null && resultSet.next()) {
-            userExist = resultSet.getInt( "userExist" );
-            if(userExist==1){
-                app.setUser(new User(inputName));
-                AlertHelper.showAlert( Alert.AlertType.INFORMATION,null,"Logging in",
-                        "Welcome "+nameField.getText() );
-                app.switchHomepage();
-            }else {
-                AlertHelper.showAlert( Alert.AlertType.INFORMATION,null,"FAILED",
-                        "No correspondent account found..." );
-            }
-        }
+        app.switchHomepage();
+//        if(nameField.getText().isEmpty()) {
+//            AlertHelper.showAlert( Alert.AlertType.ERROR, owner, "Form Error!",
+//                    "Please enter your username");
+//            return;
+//        }
+//
+//        if(passwordField.getText().isEmpty()) {
+//            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+//                    "Please enter your password");
+//            return;
+//        }
+//        int userExist = 0;
+//        String inputName=nameField.getText();
+//        String inputPassword=passwordField.getText();
+//        String stmt="SELECT count(*) as userExist\n" +
+//                "FROM userinfo\n"+
+//                "WHERE username='"+inputName+
+//                "'\nAND password='"+inputPassword+"';";
+//        System.out.println( stmt );
+//        ResultSet resultSet=DBInterface.getResultSet( stmt );
+//        if (resultSet != null && resultSet.next()) {
+//            userExist = resultSet.getInt( "userExist" );
+//            if(userExist==1){
+//                app.setUser(new User(inputName));
+//                AlertHelper.showAlert( Alert.AlertType.INFORMATION,null,"Logging in",
+//                        "Welcome "+nameField.getText() );
+//                app.switchHomepage();
+//            }else {
+//                AlertHelper.showAlert( Alert.AlertType.INFORMATION,null,"FAILED",
+//                        "No correspondent account found..." );
+//            }
+//        }
     }
 
     @Override

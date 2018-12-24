@@ -44,28 +44,29 @@ public class Main extends Application {
         StartUpController startUpController = null;
         try {
             startUpController = (StartUpController) replaceSceneContent("/fxml/start_up.fxml");
-            try {
-                if (DBConnector.getInstance().getConnection() == null || DBConnector.getInstance().getConnection().isClosed()) {
-                    Connection c = null;
-                    try {
-                        c = DBConnector.getInstance().createConnection( ConstantSetting.DB_URL,
-                                ConstantSetting.DB_USER, ConstantSetting.DB_PASSWORD, ConstantSetting.DB_NAME );
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                    if (c == null) {
-                        Alert alert = new Alert( Alert.AlertType.WARNING,
-                                "The program could not connect\nto DB with default settings.\nCheck DB-Setting" );
-                        alert.show();
-                    } else {
-                        stage.show();
-                    }
-                } else {
-                    stage.show();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            stage.show();
+//            try {
+//                if (DBConnector.getInstance().getConnection() == null || DBConnector.getInstance().getConnection().isClosed()) {
+//                    Connection c = null;
+//                    try {
+//                        c = DBConnector.getInstance().createConnection( ConstantSetting.DB_URL,
+//                                ConstantSetting.DB_USER, ConstantSetting.DB_PASSWORD, ConstantSetting.DB_NAME );
+//                    } catch (SQLException e) {
+//                        e.printStackTrace();
+//                    }
+//                    if (c == null) {
+//                        Alert alert = new Alert( Alert.AlertType.WARNING,
+//                                "The program could not connect\nto DB with default settings.\nCheck DB-Setting" );
+//                        alert.show();
+//                    } else {
+//                        stage.show();
+//                    }
+//                } else {
+//                    stage.show();
+//                }
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
