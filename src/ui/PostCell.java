@@ -1,13 +1,12 @@
 package ui;
 
-import db.DBInterface;
-import home.ConstantSetting;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import model.Post;
 
 import java.io.IOException;
@@ -22,6 +21,8 @@ import java.util.List;
  */
 public class PostCell extends ListCell<Post> {
     @FXML
+    VBox postBox;
+    @FXML
     Label username;
     @FXML
     Label updateTime;
@@ -33,7 +34,7 @@ public class PostCell extends ListCell<Post> {
     FXMLLoader fxmlLoader;
 
     public PostCell() {
-        System.out.println( "PostCell PostCell" );
+        System.out.println("PostCell PostCell");
         fxmlLoader = new FXMLLoader(getClass().getResource(
                 "/fxml/post_cell.fxml"));
         fxmlLoader.setRoot(this);
@@ -45,34 +46,30 @@ public class PostCell extends ListCell<Post> {
         }
     }
 
-    @Override
-    protected void updateItem(Post item, boolean empty) {
-        super.updateItem( item, empty );
-        System.out.println( "updateItem" );
-        if(!empty&&item!=null){
-            username.setText( item.getUserID() );
-            updateTime.setText( item.getTimeStamp().toString() );
-            content.setText( item.getContent() );
-            if(item.isWithImgs()){
-                List<String> imageUrlList = new ArrayList<>();
-                ResultSet images=DBInterface.getResultSet( "SELECT imgUrl FROM post_img "
-                        + "WHERE postID = '"
-                        + item.getPostID() +"';");
-                try {
-                    if (images != null) {
-                        while (images.next()){
-                            imageUrlList.add( images.getString( "imgUrl" ) );
-                            ImageView imageView=new ImageView( ConstantSetting.POST_IMAGE_PATH
-                                    + images.getString( "imgUrl" ));
-                            imageHBox.getChildren().add(imageView);
-                        }
-                        item.setImgFiles( imageUrlList );
-                    }
-                    setGraphic(fxmlLoader.load());
-                }catch (SQLException | IOException e){
-                    e.printStackTrace();
+
+    public void setPostContent(Post item)
+    {
+        username.setText(item.getUserID());
+        updateTime.setText( item.getTimeStamp().toString() );
+        content.setText(item.getContent());
+        if (item.isWithImgs()) {
+            try {
+                List<String> urls=new ArrayList<>( item.getImgFiles() );
+                for (String imageUrl:urls) {
+                    String fileUrl="file://"+System.getProperty("user.dir")+"/post_images/" + imageUrl;
+                    System.out.println( fileUrl );
+                    ImageView imageView = new ImageView(fileUrl);
+                    imageHBox.getChildren().add(imageView);
                 }
+                setGraphic(fxmlLoader.load());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
+    }
+
+    public VBox getBox()
+    {
+        return postBox;
     }
 }
