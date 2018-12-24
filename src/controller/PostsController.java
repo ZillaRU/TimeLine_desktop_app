@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Post;
 import ui.PostCell;
@@ -29,45 +30,50 @@ import java.util.*;
  * @date: 2018/12/17 16:04
  */
 public class PostsController implements Initializable {
-    @FXML public Button newPostBtn;
+    @FXML
+    public Button newPostBtn;
 
-    @FXML public Button refreshBtn;
+    @FXML
+    public Button refreshBtn;
 
-    @FXML public ListView<Post> postListView;
+    @FXML
+    public ListView<Post> postListView;
 
-    private final static Stage NEW_POST_STAGE =new Stage();;
+    private final static Stage NEW_POST_STAGE = new Stage();
+    ;
 
     private ObservableList<Post> postDataList;
 
-    private void getPostsData(){
-        ResultSet resultSet=DBInterface.getResultSet("SELECT * FROM post ORDER BY updateTime desc;");
+    private void getPostsData() {
+        postDataList.clear();
+        ResultSet resultSet = DBInterface.getResultSet("SELECT * FROM post ORDER BY updateTime desc;");
         if (resultSet != null) {
             try {
-                while (resultSet.next()){
-                    String postID=resultSet.getString( "postID");
-                    boolean hasImg=resultSet.getBoolean( "hasImg" );
-                    Post post=new Post(
+                while (resultSet.next()) {
+                    String postID = resultSet.getString("postID");
+                    boolean hasImg = resultSet.getBoolean("hasImg");
+                    Post post = new Post(
                             postID,
-                            resultSet.getString( "username" ),
-                            resultSet.getTimestamp( "updateTime" ),
+                            resultSet.getString("username"),
+                            resultSet.getTimestamp("updateTime"),
                             hasImg,
-                            resultSet.getString( "content" )
+                            resultSet.getString("content")
                     );
-                    System.out.println( post.toString() );
-                    if(hasImg){
+                    System.out.println(post.toString());
+                    if (hasImg) {
                         List<String> imageUrlList = new ArrayList<>();
-                        ResultSet images=DBInterface.getResultSet( "SELECT imgUrl FROM post_img "
+                        ResultSet images = DBInterface.getResultSet("SELECT imgUrl FROM post_img "
                                 + "WHERE postID = '"
-                                + postID+"';");
-                        while (images.next()){
-                            imageUrlList.add( images.getString( "imgUrl" ) );
+                                + postID + "';");
+                        while (images.next()) {
+                            imageUrlList.add(images.getString("imgUrl"));
                         }
-                        post.setImgFiles( imageUrlList );
+                        post.setImgFiles(imageUrlList);
                     }
                     postDataList.add(post);
 
                 }
-            }catch (SQLException e){
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
 
@@ -76,11 +82,11 @@ public class PostsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        postDataList= FXCollections.observableArrayList();
-        //postDataList =
-        //getPostsData();
-        postListView.getItems().addAll( new Post("a","b",null,false,"fd"  ) );
-        postListView.setCellFactory( param -> new PostCell() );
+        postDataList= FXCollections.observableArrayList();
+        getPostsData();
+        postListView.setItems(postDataList);
+        System.out.println(postListView.getItems().size());
+        postListView.setCellFactory(param -> new PostCellFactory());
     }
 
     public static Stage getNewPostStage() {
@@ -88,9 +94,9 @@ public class PostsController implements Initializable {
     }
 
     public void handleNewPostBtnAction(ActionEvent event) throws IOException {
-        Main.getApp().getStage().setOnCloseRequest( event1 -> {
+        Main.getApp().getStage().setOnCloseRequest(event1 -> {
             NEW_POST_STAGE.close();
-        } );
+        });
         Parent target = FXMLLoader.load(getClass().getResource("/fxml/new_post.fxml"));
         Scene scene = new Scene(target);
         NEW_POST_STAGE.setScene(scene);
@@ -98,6 +104,6 @@ public class PostsController implements Initializable {
     }
 
     public void handleRefreshBtnAction(ActionEvent event) {
-        //getPostsData();
+        getPostsData();
     }
 }
