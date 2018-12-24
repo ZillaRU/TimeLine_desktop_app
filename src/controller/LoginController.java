@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
+import model.User;
 import utils.AlertHelper;
 import db.DBInterface;
 
@@ -46,15 +47,18 @@ public class LoginController implements Initializable {
             return;
         }
         int userExist = 0;
+        String inputName=nameField.getText();
+        String inputPassword=passwordField.getText();
         String stmt="SELECT count(*) as userExist\n" +
                 "FROM userinfo\n"+
-                "WHERE username='"+nameField.getText()+
-                "'\nAND password='"+passwordField.getText()+"';";
+                "WHERE username='"+inputName+
+                "'\nAND password='"+inputPassword+"';";
         System.out.println( stmt );
         ResultSet resultSet=DBInterface.getResultSet( stmt );
         if (resultSet != null && resultSet.next()) {
             userExist = resultSet.getInt( "userExist" );
             if(userExist==1){
+                app.setUser(new User(inputName));
                 AlertHelper.showAlert( Alert.AlertType.INFORMATION,null,"Logging in",
                         "Welcome "+nameField.getText() );
                 app.switchHomepage();

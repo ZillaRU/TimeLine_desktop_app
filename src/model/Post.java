@@ -1,6 +1,5 @@
 package model;
 
-import java.io.File;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -9,7 +8,7 @@ import java.util.List;
  * @date: 2018/12/17 14:41
  */
 public class Post {
-    private Integer postID;
+    private String postID;
     private String userID;
     private Timestamp timeStamp;
     private boolean withImgs;
@@ -17,7 +16,7 @@ public class Post {
 
     private List<String> imgFiles;
 
-    public Post(Integer postID, String userID, Timestamp timeStamp, boolean withImgs, String content) {
+    public Post(String postID, String userID, Timestamp timeStamp, boolean withImgs, String content) {
         this.postID = postID;
         this.userID = userID;
         this.timeStamp = timeStamp;
@@ -27,5 +26,36 @@ public class Post {
 
     public void setImgFiles(List<String> imgFiles) {
         this.imgFiles = imgFiles;
+    }
+
+    public String getPostID() {
+        return postID;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public Timestamp getTimeStamp() {
+        return timeStamp;
+    }
+
+    public boolean isWithImgs() {
+        return withImgs;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public List<String> getImgFiles() {
+        return imgFiles;
+    }
+
+    @Override
+    public String toString() {
+        return this.userID+"\n"
+                +this.content+"\n"
+                +this.timeStamp;
     }
 }

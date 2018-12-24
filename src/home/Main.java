@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.User;
 
 import java.io.InputStream;
 import java.sql.Connection;
@@ -25,6 +26,8 @@ public class Main extends Application {
     private Stage stage;
 
     private static Main app;
+
+    private User currentUser;
 
     public static Main getApp() {
         return app;
@@ -72,11 +75,11 @@ public class Main extends Application {
         PostsController main = null;
         try {
             main = (PostsController) replaceSceneContent("/fxml/posts.fxml");
-            if (main != null) {
-                Alert alert = new Alert( Alert.AlertType.WARNING,
-                        "switchHomepage" );
-                alert.show();
-            }
+//            if (main != null) {
+//                Alert alert = new Alert( Alert.AlertType.WARNING,
+//                        "switchHomepage" );
+//                alert.show();
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -106,5 +109,13 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch( args );
+    }
+
+    public void setUser(User user) {
+        this.currentUser=user;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
     }
 }

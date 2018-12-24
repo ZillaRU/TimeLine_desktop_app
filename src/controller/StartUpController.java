@@ -13,8 +13,6 @@ import java.util.ResourceBundle;
  * @date: 2018/12/20 18:27
  */
 public class StartUpController  implements Initializable {
-    private Main app=Main.getApp();
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }

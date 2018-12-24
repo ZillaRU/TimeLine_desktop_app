@@ -20,6 +20,5 @@
         </HBox>
     </top>
     <ListView fx:id="postListView">
-
     </ListView>
 </BorderPane>

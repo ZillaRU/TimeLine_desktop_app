@@ -12,4 +12,5 @@ public class ConstantSetting {
     public static final String DB_NAME="timelineSys";
     public static final String DB_USER="root";
     public static final String DB_PASSWORD="";
+    public static final String POST_IMAGE_PATH="./post_images";
 }

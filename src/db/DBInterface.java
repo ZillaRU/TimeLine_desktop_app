@@ -2,7 +2,6 @@ package db;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,7 +36,7 @@ public class DBInterface {
             }
             if (!isTableExist(connection, "post", log)) {
                 createTable(connection, "post",
-                        "postID INT NOT NULL AUTO_INCREMENT,"+
+                        "postID VARCHAR(20) NOT NULL,"+
                                 "username VARCHAR(40) NOT NULL,\n" +
                                 "hasImg TINYINT(1) NOT NULL DEFAULT 0,\n"+
                                 "content TEXT,\n"+
@@ -47,7 +46,7 @@ public class DBInterface {
             }
             if (!isTableExist(connection, "post_img", log)) {
                 createTable(connection, "post_img",
-                        "postID INT NOT NULL,\n" +
+                        "postID VARCHAR(20) NOT NULL,\n" +
                                 "imgUrl VARCHAR(40) NOT NULL,\n"+
                                 "FOREIGN KEY(postID) REFERENCES post(postID)", log);
             }
