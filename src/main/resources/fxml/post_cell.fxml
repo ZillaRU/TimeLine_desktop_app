@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="javafx.scene.control.ListCell" xmlns:fx="http://javafx.com/fxml">
+    <VBox fx:id="postBox">
+        <children>
+            <Label fx:id="username"/>
+            <Label fx:id="content"/>
+            <Label fx:id="updateTime"/>
+            <HBox fx:id="imageHBox">
+            </HBox>
+        </children>
+    </VBox>
+</fx:root>
+
