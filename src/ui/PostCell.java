@@ -1,17 +1,20 @@
 package ui;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Post;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,42 +37,44 @@ public class PostCell extends ListCell<Post> {
     FXMLLoader fxmlLoader;
 
     public PostCell() {
-        System.out.println("PostCell PostCell");
-        fxmlLoader = new FXMLLoader(getClass().getResource(
-                "/fxml/post_cell.fxml"));
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setController(this);
+        System.out.println( "PostCell PostCell" );
+        fxmlLoader = new FXMLLoader( getClass().getResource(
+                "/fxml/post_cell.fxml" ) );
+        fxmlLoader.setRoot( this );
+        fxmlLoader.setController( this );
         try {
-            setGraphic(fxmlLoader.load());
+            setGraphic( fxmlLoader.load() );
         } catch (IOException exception) {
-            throw new RuntimeException(exception);
+            throw new RuntimeException( exception );
         }
     }
 
 
-    public void setPostContent(Post item)
-    {
-        username.setText(item.getUserID());
+    public void setPostContent(Post item) {
+        username.setText( item.getUserID() );
         updateTime.setText( item.getTimeStamp().toString() );
-        content.setText(item.getContent());
+        content.setText( item.getContent() );
         if (item.isWithImgs()) {
-            try {
-                List<String> urls=new ArrayList<>( item.getImgFiles() );
-                for (String imageUrl:urls) {
-                    String fileUrl="file://"+System.getProperty("user.dir")+"/post_images/" + imageUrl;
-                    System.out.println( fileUrl );
-                    ImageView imageView = new ImageView(fileUrl);
-                    imageHBox.getChildren().add(imageView);
+            List<String> urls = new ArrayList<>( item.getImgFiles() );
+            for (String imageUrl : urls) {
+                String fileUrl = "./post_images/" + imageUrl;
+                System.out.println( fileUrl );
+                BufferedImage bufferedImage;
+                try {
+                    bufferedImage = ImageIO.read( new File(fileUrl));
+                    Image image = SwingFXUtils.toFXImage( bufferedImage, null );
+                    ImageView imageView = new ImageView( image );
+                    imageView.setFitHeight( 80 );
+                    imageView.setFitWidth( 100 );
+                    imageHBox.getChildren().add(imageView );
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                setGraphic(fxmlLoader.load());
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }
 
-    public VBox getBox()
-    {
+    public VBox getBox() {
         return postBox;
     }
 }
