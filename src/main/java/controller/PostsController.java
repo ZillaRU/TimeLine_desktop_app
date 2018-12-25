@@ -56,44 +56,16 @@ public class PostsController implements Initializable {
 
     private PostDAO postDAO;
 
-//    private ScheduledService getUpdateNumService;
-
     private int page = 0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         postsController = this;
         postDAO = new PostDAO();
-//        getUpdateNumService = new ScheduledService() {
-//            @Override
-//            protected Task createTask() {
-//                return new Task<Void>() {
-//                    @Override
-//                    protected Void call() throws Exception {
-//                        int count = 0;
-//                        if (postDataList.size() > 0) {
-//                            count = postDAO.countUpdate( postDataList.get( 0 ).getTimeStamp() );
-//                            System.out.println( count );
-//                        }
-//                        if (count > 0) {
-//                            updateCountLabel.setText( "new " + String.valueOf( count ) );
-//                        } else if (count < 0) {
-//                            updateCountLabel.setText( "failed" );
-//                        }
-//                        return null;
-//                    }
-//                };
-//            }
-//        };
-//        getUpdateNumService.setPeriod( Duration.minutes( ConstantSetting.UPDATE_PERIOD_MIN ) );
-//        getUpdateNumService.start();
-
-
         KeyFrame update = new KeyFrame( Duration.minutes( 0.2 ), event -> {
             int count = 0;
             if (postDataList.size() > 0) {
                 count = postDAO.countUpdate( postDataList.get( 0 ).getTimeStamp() );
-                System.out.println( count );
             }
             if (count > 0) {
                 updateCountLabel.setText( "new " + String.valueOf( count ) );
