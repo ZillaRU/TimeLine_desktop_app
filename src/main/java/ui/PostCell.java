@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Post;
+import utils.TimeDisplay;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -37,7 +38,6 @@ public class PostCell extends ListCell<Post> {
     FXMLLoader fxmlLoader;
 
     public PostCell() {
-        System.out.println( "PostCell PostCell" );
         fxmlLoader = new FXMLLoader( getClass().getResource(
                 "/fxml/post_cell.fxml" ) );
         fxmlLoader.setRoot( this );
@@ -52,13 +52,12 @@ public class PostCell extends ListCell<Post> {
 
     public void setPostContent(Post item) {
         username.setText( item.getUserID() );
-        updateTime.setText( item.getTimeStamp().toString() );
+        updateTime.setText( TimeDisplay.format(item.getTimeStamp()));
         content.setText( item.getContent() );
         if (item.isWithImgs()) {
             List<String> urls = new ArrayList<>( item.getImgFiles() );
             for (String imageUrl : urls) {
                 String fileUrl = "./post_images/" + imageUrl;
-                System.out.println( fileUrl );
                 BufferedImage bufferedImage;
                 try {
                     bufferedImage = ImageIO.read( new File(fileUrl));

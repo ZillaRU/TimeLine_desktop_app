@@ -14,4 +14,5 @@ public class ConstantSetting {
     public static final String DB_PASSWORD="";
     public static final int POST_NUM_PAGE=5;
     public static final String POST_IMAGE_PATH="./post_images";
+    public static final double UPDATE_PERIOD_MIN=0.2;
 }

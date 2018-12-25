@@ -7,12 +7,13 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.ListView?>
+<?import com.sun.javafx.scene.control.skin.IntegerField?>
 <BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PostsController">
     <top>
         <HBox>
-            <Label prefWidth="250.0" alignment="CENTER_RIGHT" text="Moments :) " wrapText="true">
-            </Label>
+            <Label prefWidth="200.0" alignment="CENTER_RIGHT" text="Moments :) " wrapText="true"/>
+            <Label fx:id="updateCountLabel" />
             <Button fx:id="newPostBtn" onAction="#handleNewPostBtnAction" text="new post"/>
             <Button fx:id="refreshBtn" onAction="#handleRefreshBtnAction" text="refresh"/>
         </HBox>

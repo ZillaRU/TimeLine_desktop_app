@@ -3,8 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root type="javafx.scene.control.ListCell" xmlns:fx="http://javafx.com/fxml">
-    <VBox fx:id="postBox">
+<fx:root type="javafx.scene.control.ListCell" xmlns:fx="http://javafx.com/fxml" prefHeight="130.0">
+    <VBox fx:id="postBox" prefHeight="130.0">
         <children>
             <Label fx:id="username"/>
             <Label fx:id="content"/>

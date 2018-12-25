@@ -7,6 +7,7 @@ import utils.IdGenerator;
 import java.io.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +44,6 @@ public class PostDAO {
                                 + "VALUES ('"
                                 + newPost.getPostID() + "', '"
                                 + newImageName + "');";
-                        System.out.println( stmt1 );
                         DBInterface.executeStatement( stmt1 );
                         outputStream.close();
                         inputStream.close();
@@ -99,4 +99,23 @@ public class PostDAO {
     public boolean deletePost(){
         return true;
     }
+
+    public int countUpdate(Timestamp timestamp){
+        String stmt = "SELECT count(*) as updateCnt FROM post WHERE updateTime > '"+
+                timestamp.toString()+
+                "' ORDER BY updateTime DESC;";
+        System.out.println( stmt );
+        try {
+            ResultSet resultSet=DBInterface.getResultSet( stmt );
+            if(resultSet!=null){
+                resultSet.next();
+                System.out.println( "countUpdate"+resultSet.getInt( "updateCnt" ));
+                return resultSet.getInt( "updateCnt" );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
 }
