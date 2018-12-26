@@ -3,11 +3,13 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controller.StartUpController"
-            prefWidth="400.0"
-            prefHeight="600.0">
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<StackPane xmlns="http://javafx.com/javafx"
+               xmlns:fx="http://javafx.com/fxml"
+               fx:controller="controller.StartUpController"
+               prefWidth="400.0"
+               prefHeight="600.0">
     <TabPane>
         <tabs>
             <Tab text="Log In" closable="false" >
@@ -22,4 +24,4 @@
             </Tab>
         </tabs>
     </TabPane>
-</AnchorPane>
+</StackPane>

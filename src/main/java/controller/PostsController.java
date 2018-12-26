@@ -1,5 +1,7 @@
 package controller;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXListView;
 import db.PostDAO;
 import home.ConstantSetting;
 import home.Main;
@@ -13,9 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Post;
@@ -33,16 +33,16 @@ public class PostsController implements Initializable {
     private static PostsController postsController;
 
     @FXML
-    public Button newPostBtn;
+    public JFXButton newPostBtn;
 
     @FXML
-    public Button refreshBtn;
+    public JFXButton refreshBtn;
 
     @FXML
-    public ListView<Post> postListView;
+    public JFXListView<Post> postListView;
 
     @FXML
-    public Button loadMoreBtn;
+    public JFXButton loadMoreBtn;
 
     @FXML
     public Label updateCountLabel;

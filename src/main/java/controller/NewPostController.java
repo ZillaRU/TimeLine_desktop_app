@@ -1,11 +1,11 @@
 package controller;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 import db.PostDAO;
 import home.Main;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import model.Post;
 import utils.AlertHelper;
@@ -19,9 +19,9 @@ import java.util.List;
  * @date: 2018/12/20 18:15
  */
 public class NewPostController {
-    public Button submitBtn;
-    public TextArea contentText;
-    public Button uploadImageBtn;
+    public JFXButton submitBtn;
+    public JFXTextArea contentText;
+    public JFXButton uploadImageBtn;
     private final FileChooser fileChooser = new FileChooser();
     private List<File> imageFileList = null;
 
@@ -29,7 +29,8 @@ public class NewPostController {
         Post newPost = new Post( IdGenerator.getId(), Main.getApp().getCurrentUser().getUserID(),
                 null, imageFileList != null, contentText.getText() );
         if (new PostDAO().addPost( newPost, imageFileList )) {
-            AlertHelper.showAlert( Alert.AlertType.INFORMATION, null, "INSERT INTO post",
+            AlertHelper.showJDialog(Main.getApp().getStage(),
+                    "INSERT INTO post",
                     "post successfully~" );
             PostsController.NEW_POST_STAGE.close();
             PostsController.getPostsController().refresh();

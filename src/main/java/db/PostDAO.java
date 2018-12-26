@@ -48,8 +48,8 @@ public class PostDAO {
                         String stmt1 = "INSERT INTO post_img(postID, imgUrl) "
                                 + "VALUES (?,?)";
                         PreparedStatement statement1=con.prepareStatement( stmt1 );
-                        statement.setString( 1, newPost.getPostID());
-                        statement.setString( 2,newImageName );
+                        statement1.setString( 1, newPost.getPostID());
+                        statement1.setString( 2,newImageName );
                         statement1.executeUpdate();
                         outputStream.close();
                         inputStream.close();

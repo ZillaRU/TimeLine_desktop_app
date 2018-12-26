@@ -1,10 +1,10 @@
 package ui;
 
+import com.jfoenix.controls.JFXListCell;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -23,7 +23,7 @@ import java.util.List;
  * @author: zilla0148
  * @date: 2018/12/20 23:34
  */
-public class PostCell extends ListCell<Post> {
+public class PostCell extends JFXListCell<Post> {
     @FXML
     VBox postBox;
     @FXML

@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<fx:root type="javafx.scene.control.ListCell" xmlns:fx="http://javafx.com/fxml" prefHeight="130.0">
+<fx:root type="com.jfoenix.controls.JFXListCell" xmlns:fx="http://javafx.com/fxml" prefHeight="130.0">
     <VBox fx:id="postBox" prefHeight="130.0">
         <children>
             <Label fx:id="username"/>

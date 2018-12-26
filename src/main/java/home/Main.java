@@ -90,6 +90,7 @@ public class Main extends Application {
             page = loader.load( in );
             Scene scene = new Scene( page, ConstantSetting.START_UP_SCENE_SIZE.width,
                     ConstantSetting.START_UP_SCENE_SIZE.height );
+            scene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
             stage.setScene( scene );
             stage.sizeToScene();
             return (Initializable) loader.getController();
