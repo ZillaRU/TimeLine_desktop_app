@@ -28,7 +28,7 @@ public class NewPostController {
     public void handleSubmitAction(ActionEvent event) {
         Post newPost = new Post( IdGenerator.getId(), Main.getApp().getCurrentUser().getUserID(),
                 null, imageFileList != null, contentText.getText() );
-        if(new PostDAO().addPost(newPost,imageFileList)) {
+        if (new PostDAO().addPost( newPost, imageFileList )) {
             AlertHelper.showAlert( Alert.AlertType.INFORMATION, null, "INSERT INTO post",
                     "post successfully~" );
             PostsController.NEW_POST_STAGE.close();
@@ -39,7 +39,7 @@ public class NewPostController {
 
     public void handleUploadImageAction(ActionEvent event) {
         fileChooser.setTitle( "Open Image File" );
-        fileChooser.setSelectedExtensionFilter( new FileChooser.ExtensionFilter( "jpg", "png", "jpeg" ) );
+        fileChooser.setSelectedExtensionFilter( new FileChooser.ExtensionFilter( "image", "jpg", "png", "jpeg", "bmp" ) );
         imageFileList = fileChooser.showOpenMultipleDialog( PostsController.getNewPostStage() );
     }
 }
