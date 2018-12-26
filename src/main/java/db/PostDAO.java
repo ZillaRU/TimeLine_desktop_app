@@ -4,10 +4,11 @@ import home.ConstantSetting;
 import model.Post;
 import utils.IdGenerator;
 
-import java.io.*;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,15 +17,19 @@ import java.util.List;
  * @date: 2018/12/25 14:23
  */
 public class PostDAO {
+    private Connection con = DBConnector.getInstance().getConnection();
     public boolean addPost(Post newPost, List<File> imageFileList){
         String stmt="INSERT INTO post(postID, username, hasImg, content) "
-                + "VALUES ('"
-                + newPost.getPostID() + "', '"
-                + newPost.getUserID() + "', "
-                + newPost.isWithImgs() + ", '"
-                + newPost.getContent() + "');";
+                + "VALUES (?,?,?,?);";
+
         try {
-            if (DBInterface.executeStatement( stmt )) {
+            PreparedStatement statement=con.prepareStatement( stmt );
+            statement.setString( 1, newPost.getPostID());
+            statement.setString( 2,newPost.getUserID() );
+            statement.setBoolean( 3 ,newPost.isWithImgs());
+            statement.setString( 4,newPost.getContent() );
+            System.out.println( statement );
+            if (statement.executeUpdate()==1) {
                 if (newPost.isWithImgs()) {
                     FileInputStream inputStream;
                     FileOutputStream outputStream;
@@ -41,10 +46,11 @@ public class PostDAO {
                             outputStream.write( buffer, 0, cnt );
                         }
                         String stmt1 = "INSERT INTO post_img(postID, imgUrl) "
-                                + "VALUES ('"
-                                + newPost.getPostID() + "', '"
-                                + newImageName + "');";
-                        DBInterface.executeStatement( stmt1 );
+                                + "VALUES (?,?)";
+                        PreparedStatement statement1=con.prepareStatement( stmt1 );
+                        statement.setString( 1, newPost.getPostID());
+                        statement.setString( 2,newImageName );
+                        statement1.executeUpdate();
                         outputStream.close();
                         inputStream.close();
                     }
@@ -94,10 +100,6 @@ public class PostDAO {
             }
         }
         return resultList;
-    }
-
-    public boolean deletePost(){
-        return true;
     }
 
     public int countUpdate(Timestamp timestamp){

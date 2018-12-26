@@ -7,8 +7,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.ScheduledService;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,8 +22,7 @@ import model.Post;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Timestamp;
-import java.util.*;
+import java.util.ResourceBundle;
 
 /**
  * @author: zilla0148
@@ -62,7 +59,7 @@ public class PostsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         postsController = this;
         postDAO = new PostDAO();
-        KeyFrame update = new KeyFrame( Duration.minutes( 0.2 ), event -> {
+        KeyFrame update = new KeyFrame( Duration.minutes( ConstantSetting.UPDATE_PERIOD_MIN),event -> {
             int count = 0;
             if (postDataList.size() > 0) {
                 count = postDAO.countUpdate( postDataList.get( 0 ).getTimeStamp() );

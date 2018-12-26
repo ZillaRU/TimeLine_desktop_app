@@ -1,6 +1,7 @@
 package controller;
 
 import db.UserDAO;
+import home.ConstantSetting;
 import home.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,10 +13,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Window;
 import model.User;
 import utils.AlertHelper;
-import db.DBInterface;
+import utils.FormatChecker;
 
 import java.net.URL;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -39,32 +39,37 @@ public class LoginController implements Initializable {
     @FXML
     protected void handleLogInButtonAction(ActionEvent event) throws SQLException {
         Window owner = signInButton.getScene().getWindow();
-        if (nameField.getText().isEmpty()) {
+        String inputName = nameField.getText();
+        String inputPassword = passwordField.getText();
+        if (inputName.isEmpty()) {
             AlertHelper.showAlert( Alert.AlertType.ERROR, owner, "Form Error!",
-                    "Please enter your username" );
+                    "用户名不可为空" );
             return;
-        }
-        if (passwordField.getText().isEmpty()) {
-            AlertHelper.showAlert( Alert.AlertType.ERROR, owner, "Form Error!",
-                    "Please enter your password" );
+        } else if (inputPassword.isEmpty()) {
+            AlertHelper.showAlert( Alert.AlertType.ERROR, owner, "格式出错啦!",
+                    "密码不可为空" );
             return;
+        } else {
+            if (!FormatChecker.isLetterDigit( inputPassword )) {
+                AlertHelper.showAlert( Alert.AlertType.ERROR, owner, "格式出错啦!",
+                        "密码格式错误，应仅包含数字、字母，6-18位" );
+                return;
+            }
         }
 
-        String inputName = nameField.getText();
-        if (new UserDAO().getAccount( inputName, passwordField.getText() ) == 1) {
+
+        if (new UserDAO().getAccount( inputName, inputPassword ) == 1) {
             app.setUser( new User( inputName ) );
-            AlertHelper.showAlert( Alert.AlertType.INFORMATION, null, "Logging in",
-                    "Welcome " + nameField.getText() );
+            AlertHelper.showAlert( Alert.AlertType.INFORMATION, null,
+                    ConstantSetting.ALERT_TITLE, "欢迎 " + inputName );
             app.switchHomepage();
         } else {
-            AlertHelper.showAlert( Alert.AlertType.INFORMATION, null, "FAILED",
-                    "No correspondent account found..." );
+            AlertHelper.showAlert( Alert.AlertType.INFORMATION, null,
+                    ConstantSetting.ALERT_TITLE, "未找到该用户..." );
         }
-
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 }

@@ -1,21 +1,17 @@
 package controller;
 
-import db.DBInterface;
 import db.PostDAO;
-import home.ConstantSetting;
 import home.Main;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import model.Post;
 import utils.AlertHelper;
 import utils.IdGenerator;
 
-import java.io.*;
-import java.sql.SQLException;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -37,7 +33,6 @@ public class NewPostController {
                     "post successfully~" );
             PostsController.NEW_POST_STAGE.close();
             PostsController.getPostsController().refresh();
-
         }
     }
 

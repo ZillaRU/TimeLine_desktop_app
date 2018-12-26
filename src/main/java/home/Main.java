@@ -35,7 +35,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        app=this;
+        app = this;
         stage = primaryStage;
         startUp();
     }
@@ -43,7 +43,7 @@ public class Main extends Application {
     private void startUp() {
         StartUpController startUpController = null;
         try {
-            startUpController = (StartUpController) replaceSceneContent("/fxml/start_up.fxml");
+            startUpController = (StartUpController) replaceSceneContent( "/fxml/start_up.fxml" );
             try {
                 if (DBConnector.getInstance().getConnection() == null || DBConnector.getInstance().getConnection().isClosed()) {
                     Connection c = null;
@@ -86,13 +86,14 @@ public class Main extends Application {
         loader.setBuilderFactory( new JavaFXBuilderFactory() );
         loader.setLocation( Main.class.getResource( fxml ) );
         Pane page;
-        if(in!=null){
+        if (in != null) {
             page = loader.load( in );
-            Scene scene = new Scene( page, ConstantSetting.SCENE_SIZE.width, ConstantSetting.SCENE_SIZE.height );
+            Scene scene = new Scene( page, ConstantSetting.START_UP_SCENE_SIZE.width,
+                    ConstantSetting.START_UP_SCENE_SIZE.height );
             stage.setScene( scene );
             stage.sizeToScene();
             return (Initializable) loader.getController();
-        }else {
+        } else {
             System.out.println( "InputStream is null" );
             return null;
         }
@@ -103,7 +104,7 @@ public class Main extends Application {
     }
 
     public void setUser(User user) {
-        this.currentUser=user;
+        this.currentUser = user;
     }
 
     public User getCurrentUser() {

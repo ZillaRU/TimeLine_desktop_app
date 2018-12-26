@@ -1,17 +1,14 @@
 package controller;
 
-import db.DBInterface;
 import db.UserDAO;
-import home.Main;
+import home.ConstantSetting;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import utils.AlertHelper;
-
-import java.sql.SQLException;
+import utils.FormatChecker;
 
 /**
  * @author: zilla0148
@@ -30,30 +27,36 @@ public class RegisterController {
 
     @FXML
     protected void handleSignUpButtonAction(ActionEvent event) {
-        if (nameField.getText().isEmpty()) {
-            AlertHelper.showAlert( Alert.AlertType.ERROR, null, "Form Error!",
-                    "Please enter your username" );
+        String name = nameField.getText();
+        String pass1 = passwordField.getText();
+        String pass2 = rePasswordField.getText();
+        if (name.isEmpty() || pass1.isEmpty() || pass2.isEmpty()) {
+            AlertHelper.showAlert( Alert.AlertType.ERROR, null,
+                    ConstantSetting.ALERT_TITLE,
+                    "请完整填写注册信息。" );
             return;
         }
 
-        if (passwordField.getText().isEmpty()) {
-            AlertHelper.showAlert( Alert.AlertType.ERROR, null, "Form Error!",
-                    "Please enter a password" );
+        if (!FormatChecker.isLetterDigit( pass1 )) {
+            AlertHelper.showAlert( Alert.AlertType.ERROR, null, "格式出错啦!",
+                    "密码格式错误，应仅包含数字、字母，6-18位" );
             return;
         }
 
-        if (!rePasswordField.getText().equals( passwordField.getText() )) {
-            AlertHelper.showAlert( Alert.AlertType.ERROR, null, "Form Error!",
-                    "Repeat incorrectly!" );
+        if (!pass2.equals( pass1 )) {
+            AlertHelper.showAlert( Alert.AlertType.ERROR, null,
+                    ConstantSetting.ALERT_TITLE,
+                    "两次密码输入不一致!" );
             return;
         }
-        if(new UserDAO().register( nameField.getText(),passwordField.getText() )) {
-            AlertHelper.showAlert( Alert.AlertType.INFORMATION, null, "Registration Successful!",
-                    "Welcome " + nameField.getText() );
-        }else {
-            AlertHelper.showAlert( Alert.AlertType.INFORMATION, null, "Registration failed!",
-                nameField.getText() + " exists" );
-        ;}
+
+        if (new UserDAO().register( name, pass1 )) {
+            AlertHelper.showAlert( Alert.AlertType.INFORMATION, null,
+                    "注册成功", "欢迎 " + nameField.getText() );
+        } else {
+            AlertHelper.showAlert( Alert.AlertType.INFORMATION, null,
+                    "注册失败!", nameField.getText() + " 已存在同名用户" );
+        }
     }
 }
 
