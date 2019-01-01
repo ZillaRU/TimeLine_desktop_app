@@ -2,26 +2,18 @@
 
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <StackPane xmlns="http://javafx.com/javafx"
-               xmlns:fx="http://javafx.com/fxml"
-               fx:controller="controller.StartUpController"
-               prefWidth="400.0"
-               prefHeight="600.0">
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="controller.StartUpController"
+           prefWidth="400.0"
+           prefHeight="600.0">
     <TabPane>
-        <tabs>
-            <Tab text="Log In" closable="false" >
-                <content>
-                    <fx:include source="login.fxml"/>
-                </content>
-            </Tab>
-            <Tab text="Sign Up" closable="false">
-                <content>
-                    <fx:include source="register.fxml"/>
-                </content>
-            </Tab>
-        </tabs>
+        <Tab text="Log In" closable="false" styleClass="tab-label">
+            <fx:include source="login.fxml"/>
+        </Tab>
+        <Tab text="Sign Up" closable="false">
+            <fx:include source="register.fxml"/>
+        </Tab>
     </TabPane>
 </StackPane>

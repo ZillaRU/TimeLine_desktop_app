@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXTextArea;
 import db.PostDAO;
 import home.Main;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
 import javafx.stage.FileChooser;
 import model.Post;
 import utils.AlertHelper;

@@ -9,8 +9,10 @@ import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.User;
 
 import java.io.InputStream;
@@ -37,6 +39,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         app = this;
         stage = primaryStage;
+        stage.initStyle( StageStyle.UNIFIED );
+        stage.setTitle( ConstantSetting.TITLE );
+        stage.getIcons().add(new Image( "icon/timeline.png"));
         startUp();
     }
 
@@ -90,7 +95,7 @@ public class Main extends Application {
             page = loader.load( in );
             Scene scene = new Scene( page, ConstantSetting.START_UP_SCENE_SIZE.width,
                     ConstantSetting.START_UP_SCENE_SIZE.height );
-            scene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+            scene.getStylesheets().addAll("timeline_style.css");
             stage.setScene( scene );
             stage.sizeToScene();
             return (Initializable) loader.getController();

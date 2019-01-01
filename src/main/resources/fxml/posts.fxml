@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <StackPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PostsController">
     <BorderPane>
         <top>
             <HBox>
-                <Label fx:id="updateCountLabel"/>
-                <Label prefWidth="200.0" alignment="CENTER_RIGHT" text="Moments :) " wrapText="true" />
+                <Label fx:id="updateCountLabel" styleClass="usual-label"/>
+                <Label prefWidth="200.0" alignment="CENTER_RIGHT" text="Moments :)" styleClass="head-label" wrapText="true" />
                 <JFXButton fx:id="newPostBtn" onAction="#handleNewPostBtnAction" text="new post"/>
                 <JFXButton fx:id="refreshBtn" onAction="#handleRefreshBtnAction" text="refresh"/>
             </HBox>
         </top>
         <center>
-            <JFXListView fx:id="postListView" style="-fx-background-color: #444"/>
+            <JFXListView fx:id="postListView" styleClass="table-view"/>
         </center>
         <bottom>
             <JFXButton fx:id="loadMoreBtn" onAction="#handleLoadMoreBtnAction" text="load more"/>

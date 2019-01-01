@@ -7,8 +7,6 @@ import home.ConstantSetting;
 import home.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import model.User;
 import utils.AlertHelper;
 import utils.FormatChecker;
 
@@ -35,7 +33,7 @@ public class RegisterController {
         if (name.isEmpty() || pass1.isEmpty() || pass2.isEmpty()) {
             AlertHelper.showJDialog( Main.getApp().getStage(),
                     ConstantSetting.ALERT_TITLE,
-                    "请完整填写注册信息。" );
+                    "请完整填写注册信息。 " );
             return;
         }
 
@@ -55,11 +53,10 @@ public class RegisterController {
 
         if (new UserDAO().register( name, pass1 )) {
             AlertHelper.showJDialog(Main.getApp().getStage(),
-                    "注册成功", "欢迎 " + name +"登录体验吧！");
+                    "注册成功", "欢迎 " + name +" 登录体验吧！");
         } else {
             AlertHelper.showJDialog(Main.getApp().getStage(),
                     "注册失败!", nameField.getText() + " 已存在同名用户。" );
         }
     }
 }
-

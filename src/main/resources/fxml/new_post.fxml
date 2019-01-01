@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <StackPane xmlns="http://javafx.com/javafx"
-        xmlns:fx="http://javafx.com/fxml"
-        fx:controller="controller.NewPostController"
-        prefHeight="400.0" prefWidth="600.0">
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="controller.NewPostController"
+           prefHeight="400.0" prefWidth="600.0">
     <VBox prefWidth="600.0" alignment="CENTER">
         <Label text="new post">
-            <font>
-                <Font name="Arial" size="24" ></Font>
-            </font>
         </Label>
         <Label text="content"/>
         <JFXTextArea fx:id="contentText" prefWidth="300.0" prefHeight="200.0"/>

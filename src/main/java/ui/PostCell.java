@@ -57,6 +57,7 @@ public class PostCell extends JFXListCell<Post> {
         if (item.isWithImgs()) {
             List<String> urls = new ArrayList<>( item.getImgFiles() );
             for (String imageUrl : urls) {
+//                System.getProperty("user.dir")+"/post_images/" + imageUrl;
                 String fileUrl = "./post_images/" + imageUrl;
                 BufferedImage bufferedImage;
                 try {

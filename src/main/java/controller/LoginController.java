@@ -1,6 +1,8 @@
 package controller;
 
-import com.jfoenix.controls.*;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import db.UserDAO;
 import home.ConstantSetting;
 import home.Main;

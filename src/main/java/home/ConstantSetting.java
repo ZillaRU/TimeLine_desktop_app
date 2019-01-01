@@ -7,6 +7,7 @@ import com.sun.glass.ui.Size;
  * @date: 2018/12/19 14:59
  */
 public class ConstantSetting {
+    public static final String TITLE="Timeline:)";
     static final Size START_UP_SCENE_SIZE=new Size( 400,600 );
     public static final String DB_URL="jdbc:mysql://localhost:3306/";
     public static final String DB_NAME="timelineSys";

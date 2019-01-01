@@ -1,7 +1,5 @@
 package db;
 
-import home.ConstantSetting;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,12 +15,11 @@ public class UserDAO {
     public boolean register(String name, String password) {
         try {
             String stmt = "INSERT INTO userinfo(username, password) "
-                    + "VALUES (?,ENCODE(?,?));";
+                    + "VALUES (?,MD5(?));";
             System.out.println( stmt );
             PreparedStatement preparedStatement = con.prepareStatement( stmt );
             preparedStatement.setString( 1, name );
             preparedStatement.setString( 2, password );
-            preparedStatement.setString( 3,ConstantSetting.ENCODE_KEY );
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -35,12 +32,11 @@ public class UserDAO {
         try {
             String stmt = "SELECT count(*) as userExist\n" +
                     "FROM userinfo\n" +
-                    "WHERE username=? AND DECODE(password,?)=?;";
+                    "WHERE username=? AND password=MD5(?);";
             System.out.println( stmt );
             PreparedStatement preparedStatement = con.prepareStatement( stmt );
             preparedStatement.setString( 1, name );
-            preparedStatement.setString( 2, ConstantSetting.ENCODE_KEY );
-            preparedStatement.setString( 3, password);
+            preparedStatement.setString( 2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet != null) {
                 try {
