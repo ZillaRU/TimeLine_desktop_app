@@ -7,8 +7,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.awt.*;
-
 /**
  * @author: zilla0148
  * @date: 2018/12/19 19:59
