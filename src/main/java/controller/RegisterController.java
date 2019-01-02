@@ -33,30 +33,33 @@ public class RegisterController {
         if (name.isEmpty() || pass1.isEmpty() || pass2.isEmpty()) {
             AlertHelper.showJDialog( Main.getApp().getStage(),
                     ConstantSetting.ALERT_TITLE,
-                    "请完整填写注册信息。 " );
+                    "The required information is incomplete." );
             return;
         }
-
+        if (!FormatChecker.isLetterDigit( name )) {
+            AlertHelper.showJDialog( Main.getApp().getStage(),
+                    ConstantSetting.ALERT_TITLE, "Username format error.\nOnly contain 0-9,a-z,A-Z length: 6-18" );
+            return;
+        }
         if (!FormatChecker.isLetterDigit( pass1 )) {
-            AlertHelper.showJDialog(Main.getApp().getStage(),
-                    "格式出错啦!",
-                    "密码格式错误，应仅包含数字、字母，6-18位" );
+            AlertHelper.showJDialog( Main.getApp().getStage(),
+                    ConstantSetting.ALERT_TITLE, "Password format error.\nOnly contain 0-9,a-z,A-Z length: 6-18" );
             return;
         }
 
         if (!pass2.equals( pass1 )) {
             AlertHelper.showJDialog(Main.getApp().getStage(),
                     ConstantSetting.ALERT_TITLE,
-                    "两次密码输入不一致!" );
+                    "Inconsistent passwords!" );
             return;
         }
 
         if (new UserDAO().register( name, pass1 )) {
             AlertHelper.showJDialog(Main.getApp().getStage(),
-                    "注册成功", "欢迎 " + name +" 登录体验吧！");
+                    "Registration succeeded", "Welcome " + name + " !\nPlease log in and enjoy your time." );
         } else {
             AlertHelper.showJDialog(Main.getApp().getStage(),
-                    "注册失败!", nameField.getText() + " 已存在同名用户。" );
+                    "Registration failed!", "The username already exists" );
         }
     }
 }

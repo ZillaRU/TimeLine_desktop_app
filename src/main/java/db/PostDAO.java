@@ -20,9 +20,10 @@ public class PostDAO {
     private Connection con = DBConnector.getInstance().getConnection();
     public boolean addPost(Post newPost, List<File> imageFileList){
         String stmt="INSERT INTO post(postID, username, hasImg, content) "
-                + "VALUES (?,?,?,?);";
+                + "VALUES (?,?,?,?) ;";
 
         try {
+            con.prepareStatement( "set names utf8mb4" );
             PreparedStatement statement=con.prepareStatement( stmt );
             statement.setString( 1, newPost.getPostID());
             statement.setString( 2,newPost.getUserID() );
@@ -38,8 +39,7 @@ public class PostDAO {
                         String newImageName = IdGenerator.getId() + "."
                                 + originImageName.substring( originImageName.lastIndexOf( "." ) + 1 );
                         inputStream = new FileInputStream( file );
-                        outputStream = new FileOutputStream( ConstantSetting.POST_IMAGE_PATH
-                                + "/" + newImageName );
+                        outputStream = new FileOutputStream( ConstantSetting.POST_IMAGE_PATH + newImageName );
                         byte[] buffer = new byte[1024];
                         int cnt = 0;
                         while ((cnt = inputStream.read( buffer )) > 0) {
@@ -111,7 +111,7 @@ public class PostDAO {
             ResultSet resultSet=DBInterface.getResultSet( stmt );
             if(resultSet!=null){
                 resultSet.next();
-                System.out.println( "countUpdate"+resultSet.getInt( "updateCnt" ));
+                System.out.println( "countUpdate " + resultSet.getInt( "updateCnt" ) );
                 return resultSet.getInt( "updateCnt" );
             }
         } catch (SQLException e) {

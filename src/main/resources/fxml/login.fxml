@@ -35,7 +35,7 @@
 
 
     <!-- Add Name Label -->
-    <Label text="Full Name : "
+    <Label text="Username : "
            styleClass="usual-label"
            GridPane.columnIndex="0"
            GridPane.rowIndex="1">
@@ -55,7 +55,7 @@
                       GridPane.columnIndex="1" GridPane.rowIndex="2"/>
 
     <!-- Add Submit JFXButton -->
-    <JFXButton fx:id="signInButton" text="Sign in"
+    <JFXButton fx:id="signInButton" text="Log in"
                prefWidth="100" prefHeight="40"
                GridPane.columnIndex="0" GridPane.rowIndex="4"
                GridPane.columnSpan="2" GridPane.rowSpan="1"

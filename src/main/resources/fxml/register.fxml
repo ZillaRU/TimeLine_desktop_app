@@ -32,13 +32,15 @@
 
 
     <!-- Add Name Label -->
-    <Label text="Full Name  " styleClass="usual-label"
+    <Label text="Username  " styleClass="usual-label"
            GridPane.columnIndex="0"
            GridPane.rowIndex="1" >
     </Label>
     <!-- Add Name Text Field -->
-    <JFXTextField fx:id="nameField" prefHeight="40"
-               GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    <JFXTextField fx:id="nameField"
+                  promptText="Only contain 0-9,a-z,A-Z length: 6-18"
+                  prefHeight="40"
+                  GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
     <!-- Add Password Label -->
     <Label text="Password  " styleClass="usual-label"
@@ -46,7 +48,9 @@
            GridPane.rowIndex="2" >
     </Label>
     <!-- Add Password Field -->
-    <JFXPasswordField fx:id="passwordField" prefHeight="40"
+    <JFXPasswordField fx:id="passwordField"
+                      promptText="Only contain 0-9,a-z,A-Z length: 6-18"
+                      prefHeight="40"
                       GridPane.columnIndex="1" GridPane.rowIndex="2"/>
 
     <!-- Add Password Label -->

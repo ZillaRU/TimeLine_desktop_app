@@ -10,18 +10,20 @@
            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PostsController">
     <BorderPane>
         <top>
-            <HBox>
+            <HBox prefHeight="44" spacing="20">
                 <Label fx:id="updateCountLabel" styleClass="usual-label"/>
-                <Label prefWidth="200.0" alignment="CENTER_RIGHT" text="Moments :)" styleClass="head-label" wrapText="true" />
-                <JFXButton fx:id="newPostBtn" onAction="#handleNewPostBtnAction" text="new post"/>
-                <JFXButton fx:id="refreshBtn" onAction="#handleRefreshBtnAction" text="refresh"/>
+                <Label prefWidth="200" alignment="CENTER" text="Moments :)"
+                       styleClass="head-label" wrapText="true"/>
+                <JFXButton fx:id="newPostBtn" onAction="#handleNewPostBtnAction" text="New post"/>
+                <JFXButton fx:id="refreshBtn" onAction="#handleRefreshBtnAction" text="Refresh"/>
             </HBox>
         </top>
         <center>
             <JFXListView fx:id="postListView" styleClass="table-view"/>
         </center>
         <bottom>
-            <JFXButton fx:id="loadMoreBtn" onAction="#handleLoadMoreBtnAction" text="load more"/>
+            <JFXButton fx:id="loadMoreBtn"
+                       onAction="#handleLoadMoreBtnAction" text="Load more"/>
         </bottom>
     </BorderPane>
 </StackPane>

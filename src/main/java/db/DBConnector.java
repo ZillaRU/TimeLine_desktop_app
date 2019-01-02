@@ -1,5 +1,7 @@
 package db;
 
+import home.ConstantSetting;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -30,8 +32,7 @@ public class DBConnector {
             connectionProps.put("user", user);
             connectionProps.put("password", password);
             connectionProps.put("database", database);
-            System.out.println( user+" "+password+" "+database );
-            conn = DriverManager.getConnection(url + database, connectionProps);
+            conn = DriverManager.getConnection( url + database + ConstantSetting.DB_ENCODE, connectionProps );
         } catch(SQLException ex) {
             ex.printStackTrace();
             return null;

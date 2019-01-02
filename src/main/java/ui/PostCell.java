@@ -1,6 +1,7 @@
 package ui;
 
 import com.jfoenix.controls.JFXListCell;
+import home.ConstantSetting;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -57,15 +58,14 @@ public class PostCell extends JFXListCell<Post> {
         if (item.isWithImgs()) {
             List<String> urls = new ArrayList<>( item.getImgFiles() );
             for (String imageUrl : urls) {
-//                System.getProperty("user.dir")+"/post_images/" + imageUrl;
-                String fileUrl = "./post_images/" + imageUrl;
+                String fileUrl = ConstantSetting.POST_IMAGE_PATH + imageUrl;
                 BufferedImage bufferedImage;
                 try {
                     bufferedImage = ImageIO.read( new File(fileUrl));
                     Image image = SwingFXUtils.toFXImage( bufferedImage, null );
                     ImageView imageView = new ImageView( image );
                     imageView.setFitHeight( 80 );
-                    imageView.setFitWidth( 100 );
+                    imageView.setFitWidth( 70 );
                     imageHBox.getChildren().add(imageView );
                 } catch (IOException e) {
                     e.printStackTrace();

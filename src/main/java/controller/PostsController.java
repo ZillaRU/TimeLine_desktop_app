@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Post;
@@ -62,6 +63,7 @@ public class PostsController implements Initializable {
         KeyFrame update = new KeyFrame( Duration.minutes( ConstantSetting.UPDATE_PERIOD_MIN),event -> {
             int count = 0;
             if (postDataList.size() > 0) {
+                System.out.println( postDataList.get( 0 ).getTimeStamp() );
                 count = postDAO.countUpdate( postDataList.get( 0 ).getTimeStamp() );
             }
             if (count > 0) {
@@ -93,6 +95,9 @@ public class PostsController implements Initializable {
         } );
         Parent target = FXMLLoader.load( getClass().getResource( "/fxml/new_post.fxml" ) );
         Scene scene = new Scene( target );
+        scene.getStylesheets().add( "timeline_style.css" );
+        NEW_POST_STAGE.setTitle( "New Post" );
+        NEW_POST_STAGE.getIcons().add( new Image( "icon/message.png" ) );
         NEW_POST_STAGE.setScene( scene );
         NEW_POST_STAGE.setOnCloseRequest( event1 -> refresh() );
         NEW_POST_STAGE.show();

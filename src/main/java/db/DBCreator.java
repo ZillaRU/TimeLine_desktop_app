@@ -19,7 +19,7 @@ public class DBCreator {
                     "");
             if (connection != null){
                 ArrayList<String> log = new ArrayList<>();
-                DBInterface.executeStatement( "CREATE DATABASE "+ ConstantSetting.DB_NAME );
+                DBInterface.executeStatement( "CREATE DATABASE " + ConstantSetting.DB_NAME + " character set utf8mb4;" );
                 connection=DBConnector.getInstance().createConnection(ConstantSetting.DB_URL,
                         ConstantSetting.DB_USER,
                         ConstantSetting.DB_PASSWORD,

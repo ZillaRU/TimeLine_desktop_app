@@ -7,9 +7,6 @@
     -fx-primary : #2A2E37;
     -fx-secondary : #FFFF8D;
     -fx-primarytext : #B2B2B2;
-    -fx-blue: #1976D2;
-    -fx-red: #FF0000;
-    -fx-color-1:#1976D2;
 }
 
 .root{
@@ -33,6 +30,12 @@
 
 .text-field
 {
+    -fx-font-size: 12pt;
+    -jfx-focus-color: -fx-secondary;
+    -fx-text-fill: derive(-fx-secondary, 20%);
+}
+
+.text-area {
     -fx-text-fill: -fx-primarytext;
     -fx-font-size : 12pt;
     -jfx-focus-color: -fx-secondary;
@@ -132,12 +135,6 @@
     -fx-text-fill: white;
     -fx-border-radius: 1px;
     -fx-background-radius: 3px;
-}
-
-.dialog-button:hover{
-    -fx-background-color: -fx-color-1;
-    -fx-border-color: derive(-fx-color-1, -20%);
-    -fx-text-fill: white;
 }
 
 .jfx-layout-actions
@@ -251,7 +248,6 @@
     -fx-wrap-text: true;
     -fx-text-fill: white;
     -fx-font-size: 24px;
-    -fx-font-style: bolder;
 }
 
 .usual-label {
@@ -259,12 +255,15 @@
     -fx-fill:white;
     -fx-text-fill: white;
     -fx-font-size: 14px;
-    -fx-font-style: bolder;
 }
 
 .dialog-head{
     -fx-wrap-text: true;
     -fx-fill:black;
     -fx-font-size: 18px;
-    -fx-font-style: bolder;
+}
+
+.post_item {
+    -fx-wrap-text: true;
+    -fx-font-size: 13px;
 }

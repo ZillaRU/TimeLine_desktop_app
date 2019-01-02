@@ -5,13 +5,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <fx:root type="com.jfoenix.controls.JFXListCell" xmlns:fx="http://javafx.com/fxml" prefHeight="130.0">
-    <VBox fx:id="postBox" prefHeight="130.0">
+    <VBox fx:id="postBox" spacing="2" prefHeight="140.0">
         <children>
-            <Label fx:id="username"/>
-            <Label fx:id="content"/>
-            <Label fx:id="updateTime"/>
-            <HBox fx:id="imageHBox">
-            </HBox>
+            <Label fx:id="username" styleClass="post_item" textFill="grey"/>
+            <Label fx:id="content" styleClass="post_item"/>
+            <HBox fx:id="imageHBox" spacing="3"/>
+            <Label fx:id="updateTime" styleClass="post_item" textFill="lightblue"/>
         </children>
     </VBox>
 </fx:root>

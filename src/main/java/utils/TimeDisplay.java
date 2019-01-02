@@ -12,12 +12,12 @@ public class TimeDisplay {
     private static final long ONE_DAY = 86400000L;
     private static final long ONE_WEEK = 604800000L;
 
-    private static final String ONE_SECOND_AGO = "秒前";
-    private static final String ONE_MINUTE_AGO = "分钟前";
-    private static final String ONE_HOUR_AGO = "小时前";
-    private static final String ONE_DAY_AGO = "天前";
-    private static final String ONE_MONTH_AGO = "月前";
-    private static final String ONE_YEAR_AGO = "年前";
+    private static final String ONE_SECOND_AGO = " sec ago";
+    private static final String ONE_MINUTE_AGO = " min ago";
+    private static final String ONE_HOUR_AGO = " hr ago";
+    private static final String ONE_DAY_AGO = " d ago";
+    private static final String ONE_MONTH_AGO = " m ago";
+    private static final String ONE_YEAR_AGO = " yr ago";
 
     public static String format(Date date) {
         long delta = System.currentTimeMillis() - date.getTime();

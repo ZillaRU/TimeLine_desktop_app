@@ -39,7 +39,7 @@ public class DBInterface {
                         "postID VARCHAR(20) NOT NULL,"+
                                 "username VARCHAR(40) NOT NULL,\n" +
                                 "hasImg TINYINT(1) NOT NULL DEFAULT 0,\n"+
-                                "content TEXT,\n"+
+                                "content TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,\n" +
                                 "updateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n" +
                                 "PRIMARY KEY (postID),\n"+
                                 "FOREIGN KEY(username) REFERENCES userInfo(username)", log);

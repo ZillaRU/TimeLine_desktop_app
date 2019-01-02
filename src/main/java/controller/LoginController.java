@@ -42,16 +42,16 @@ public class LoginController implements Initializable {
         String inputPassword = passwordField.getText();
         if (inputName.isEmpty()) {
             AlertHelper.showJDialog( app.getStage(),
-                    "格式出错啦!", "用户名不可为空" );
+                    ConstantSetting.ALERT_TITLE, "Username cannot be empty." );
             return;
         } else if (inputPassword.isEmpty()) {
             AlertHelper.showJDialog( app.getStage(),
-                    "格式出错啦!", "密码不可为空" );
+                    ConstantSetting.ALERT_TITLE, "Password cannot be empty." );
             return;
         } else {
             if (!FormatChecker.isLetterDigit( inputPassword )) {
                 AlertHelper.showJDialog( app.getStage(),
-                        "格式出错啦!", "密码格式错误，应仅包含数字、字母，6-18位" );
+                        ConstantSetting.ALERT_TITLE, "Password format error.\nOnly contain 0-9,a-z,A-Z length: 6-18" );
                 return;
             }
         }
@@ -60,11 +60,11 @@ public class LoginController implements Initializable {
         if (new UserDAO().getAccount( inputName, inputPassword ) == 1) {
             app.setUser( new User( inputName ) );
             AlertHelper.showJDialog( app.getStage(),
-                    ConstantSetting.ALERT_TITLE, "欢迎 " + inputName );
+                    ConstantSetting.ALERT_TITLE, "Welcome " + inputName );
             app.switchHomepage();
         } else {
             AlertHelper.showJDialog( app.getStage(),
-                    ConstantSetting.ALERT_TITLE, "未找到该用户..." );
+                    ConstantSetting.ALERT_TITLE, "User not found..." );
         }
     }
 
