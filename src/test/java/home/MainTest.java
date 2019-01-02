@@ -7,8 +7,14 @@ import org.junit.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
+import org.testfx.util.WaitForAsyncUtils;
+
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertFalse;
+import static org.testfx.api.FxAssert.verifyThat;
+import static org.testfx.matcher.base.NodeMatchers.isVisible;
+import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
 //import org.junit.Test;
 
@@ -43,8 +49,9 @@ public class MainTest extends ApplicationTest {
         robot.clickOn("#nameField").write("dd112211");
         robot.clickOn("#passwordField").write("dd112211");
         robot.clickOn("#signInButton");
-
+        WaitForAsyncUtils.sleep( 1, TimeUnit.SECONDS );
+        verifyThat( "#myDialog", isVisible() );
+        clickOn( "#closeBtn" );
+        verifyThat( "#closeBtn", hasText( "Close" ) );
     }
-
-
 }
