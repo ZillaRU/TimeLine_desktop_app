@@ -3,8 +3,8 @@ package utils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -15,15 +15,16 @@ public class AlertHelper {
 
     public static void showJDialog(Stage stage, String head, String body) {
         JFXDialogLayout dialogContent = new JFXDialogLayout();
-        Text text1 = new Text( head );
-        text1.getStyleClass().add( "dialog-head" );
+        Label text1 = new Label( head );
+        text1.setId( "headLabel" );
+        text1.getStyleClass().add( "head-label" );
         dialogContent.setHeading( text1 );
-        Text text = new Text( body );
-        text.getStyleClass().add("usual-label");
+        Label text = new Label( body );
+        text.getStyleClass().add( "usual-label" );
+        text.setId( "contentLabel" );
         dialogContent.setBody( text );
         JFXButton close = new JFXButton( "Close" );
         close.setId( "closeBtn" );
-        close.getStyleClass().add( "close-btn" );
         dialogContent.setActions( close );
         JFXDialog dialog = new JFXDialog( (StackPane) stage.getScene().getRoot(), dialogContent, JFXDialog.DialogTransition.CENTER );
         dialog.getDialogContainer().setId( "myDialog" );

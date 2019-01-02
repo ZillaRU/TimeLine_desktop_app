@@ -20,10 +20,12 @@ import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
 public class MainTest extends ApplicationTest {
     Stage stage;
-    @Before public void setup() throws Exception {
+
+    @Before
+    public void setup() throws Exception {
 
         stage = FxToolkit.registerPrimaryStage();
-        FxToolkit.setupApplication(Main.class);
+        FxToolkit.setupApplication( Main.class );
 
         //   WaitForAsyncUtils.sleep(6, TimeUnit.SECONDS);
         //  FxToolkit.cleanupApplication(demoApplication);
@@ -32,25 +34,30 @@ public class MainTest extends ApplicationTest {
         // Setup and show Scene.
 
     }
-    @After public void cleanup() {}
+
+    @After
+    public void cleanup() {
+    }
 
     @Test
     public void stage_should_be_visible() {
         // expect:
         //verifyThat(stage.isFullScreen(),equalTo(true));
-        assertFalse(stage.isFullScreen());
+        assertFalse( stage.isFullScreen() );
 
     }
+
     @Test
     public void login_with_wrong_username() {
 
-        String strname="cse";
-        FxRobot robot=new FxRobot();
-        robot.clickOn("#nameField").write("dd112211");
-        robot.clickOn("#passwordField").write("dd112211");
-        robot.clickOn("#signInButton");
+        String strname = "cse";
+        FxRobot robot = new FxRobot();
+        robot.clickOn( "#passwordField" ).write( "dd112211" );
+        robot.clickOn( "#signInButton" );
         WaitForAsyncUtils.sleep( 1, TimeUnit.SECONDS );
         verifyThat( "#myDialog", isVisible() );
+        verifyThat( "#headLabel", hasText( "Prompt" ) );
+        verifyThat( "#contentLabel", hasText( "Username cannot be empty." ) );
         clickOn( "#closeBtn" );
         verifyThat( "#closeBtn", hasText( "Close" ) );
     }
