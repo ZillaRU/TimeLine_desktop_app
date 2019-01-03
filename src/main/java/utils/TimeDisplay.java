@@ -34,7 +34,7 @@ public class TimeDisplay {
             return (hours <= 0 ? 1 : hours) + ONE_HOUR_AGO;
         }
         if (delta < 48L * ONE_HOUR) {
-            return "昨天";
+            return "Yesterday";
         }
         if (delta < 30L * ONE_DAY) {
             long days = toDays(delta);

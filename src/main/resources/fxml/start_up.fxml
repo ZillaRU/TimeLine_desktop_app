@@ -9,10 +9,12 @@
            prefWidth="400.0"
            prefHeight="600.0">
     <TabPane>
-        <Tab text="Log In" closable="false" styleClass="tab-label">
+        <Tab text="Log In" fx:id="logInTab"
+             closable="false" styleClass="tab-label">
             <fx:include source="login.fxml"/>
         </Tab>
-        <Tab text="Sign Up" closable="false">
+        <Tab text="Sign Up" fx:id="SignUpTab"
+             closable="false" styleClass="tab-label">
             <fx:include source="register.fxml"/>
         </Tab>
     </TabPane>

@@ -45,7 +45,7 @@ public class Main extends Application {
         startUp();
     }
 
-    private void startUp() {
+    public void startUp() {
         StartUpController startUpController = null;
         try {
             startUpController = (StartUpController) replaceSceneContent( "/fxml/start_up.fxml" );

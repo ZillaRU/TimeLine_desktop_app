@@ -34,6 +34,9 @@ public class PostsController implements Initializable {
     private static PostsController postsController;
 
     @FXML
+    public Label usernameLabel;
+
+    @FXML
     public JFXButton newPostBtn;
 
     @FXML
@@ -58,6 +61,7 @@ public class PostsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        usernameLabel.setText( "Hello," + Main.getApp().getCurrentUser().getUserID() );
         postsController = this;
         postDAO = new PostDAO();
         KeyFrame update = new KeyFrame( Duration.minutes( ConstantSetting.UPDATE_PERIOD_MIN),event -> {
@@ -75,8 +79,6 @@ public class PostsController implements Initializable {
         Timeline tl = new Timeline( update );
         tl.setCycleCount( Timeline.INDEFINITE );
         tl.play();
-
-
         postDataList = FXCollections.observableArrayList();
         page = 0;
         postDataList.addAll( postDAO.getPosts( page++ ) );
@@ -119,5 +121,10 @@ public class PostsController implements Initializable {
 
     static PostsController getPostsController() {
         return postsController;
+    }
+
+    public void handleLogOutBtnAction(ActionEvent event) {
+        Main.getApp().setUser( null );
+        Main.getApp().startUp();
     }
 }

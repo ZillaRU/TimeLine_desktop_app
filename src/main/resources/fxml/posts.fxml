@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <StackPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PostsController">
     <BorderPane>
         <top>
             <HBox prefHeight="44" spacing="20">
                 <Label fx:id="updateCountLabel" styleClass="usual-label"/>
-                <Label prefWidth="200" alignment="CENTER" text="Moments :)"
-                       styleClass="head-label" wrapText="true"/>
+                <VBox fx:id="vboxLogOut" spacing="2">
+                    <Label fx:id="usernameLabel" prefWidth="150"
+                           styleClass="usual-label" wrapText="true"/>
+                    <JFXButton fx:id="logOutBtn"
+                               text="Log out"
+                               prefHeight="20"
+                               onAction="#handleLogOutBtnAction"/>
+                </VBox>
                 <JFXButton fx:id="newPostBtn" onAction="#handleNewPostBtnAction" text="New post"/>
                 <JFXButton fx:id="refreshBtn" onAction="#handleRefreshBtnAction" text="Refresh"/>
             </HBox>

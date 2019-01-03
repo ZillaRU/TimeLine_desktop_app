@@ -59,9 +59,9 @@ public class LoginController implements Initializable {
 
         if (new UserDAO().getAccount( inputName, inputPassword ) == 1) {
             app.setUser( new User( inputName ) );
+            app.switchHomepage();
             AlertHelper.showJDialog( app.getStage(),
                     ConstantSetting.ALERT_TITLE, "Welcome " + inputName );
-            app.switchHomepage();
         } else {
             AlertHelper.showJDialog( app.getStage(),
                     ConstantSetting.ALERT_TITLE, "User not found..." );
