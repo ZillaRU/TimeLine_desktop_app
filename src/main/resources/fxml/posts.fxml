@@ -25,7 +25,7 @@
             </HBox>
         </top>
         <center>
-            <JFXListView fx:id="postListView" styleClass="table-view"/>
+            <JFXListView fx:id="postListView" styleClass="table-view" prefWidth="480"/>
         </center>
         <bottom>
             <JFXButton fx:id="loadMoreBtn" prefWidth="480"

@@ -43,6 +43,7 @@ public class Main extends Application {
         stage = primaryStage;
         stage.initStyle( StageStyle.UNIFIED );
         stage.setTitle( ConstantSetting.TITLE );
+        stage.setResizable( false );
         stage.getIcons().add( new Image( "icon/timeline.png" ) );
         startUp();
     }
