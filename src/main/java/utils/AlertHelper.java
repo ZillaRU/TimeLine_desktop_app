@@ -17,7 +17,6 @@ public class AlertHelper {
         JFXDialogLayout dialogContent = new JFXDialogLayout();
         Label text1 = new Label( head );
         text1.setId( "headLabel" );
-        text1.getStyleClass().add( "head-label" );
         dialogContent.setHeading( text1 );
         Label text = new Label( body );
         text.getStyleClass().add( "usual-label" );

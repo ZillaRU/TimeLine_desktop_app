@@ -64,8 +64,8 @@ public class PostCell extends JFXListCell<Post> {
                     bufferedImage = ImageIO.read( new File( fileUrl ) );
                     Image image = SwingFXUtils.toFXImage( bufferedImage, null );
                     ImageView imageView = new ImageView( image );
-                    imageView.setFitHeight( 80 );
-                    imageView.setFitWidth( 70 );
+                    imageView.setPreserveRatio( true );
+                    imageView.setFitHeight( 120 );
                     imageHBox.getChildren().add( imageView );
                 } catch (IOException e) {
                     e.printStackTrace();

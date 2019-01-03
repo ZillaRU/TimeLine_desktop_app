@@ -5,9 +5,7 @@
 <?import javafx.scene.layout.StackPane?>
 <StackPane xmlns:fx="http://javafx.com/fxml"
            xmlns="http://javafx.com/javafx"
-           fx:controller="controller.StartUpController"
-           prefWidth="400.0"
-           prefHeight="600.0">
+           fx:controller="controller.StartUpController">
     <TabPane>
         <Tab text="Log In" fx:id="logInTab"
              closable="false" styleClass="tab-label">

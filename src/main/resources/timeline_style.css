@@ -17,7 +17,8 @@
     -fx-text-fill: -fx-primarytext;
     -fx-background-color: -fx-primary;
     -fx-border-color: -fx-secondary;
-    -fx-border-radius: 20px;
+    -fx-pref-height: 20px;
+    -fx-border-radius: 12px;
     -fx-background-radius: 20px;
     -fx-font-size: 12pt;
 }
@@ -221,7 +222,7 @@
 
 .scroll-bar:horizontal .thumb,
 .scroll-bar:vertical .thumb {
-    -fx-background-color: derive(-fx-primary, 60%);
+    -fx-background-color: derive(darkgray, 60%);
     -fx-border-color: transparent;
     -fx-background-radius: 5em;
 }
@@ -241,7 +242,7 @@
 }
 
 .jfx-layout-heading .label {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-font-size: 12pt;
 }
 
@@ -265,12 +266,6 @@
     -fx-fill: white;
     -fx-text-fill: white;
     -fx-font-size: 14px;
-}
-
-.dialog-head {
-    -fx-wrap-text: true;
-    -fx-fill: black;
-    -fx-font-size: 18px;
 }
 
 .post_item {
