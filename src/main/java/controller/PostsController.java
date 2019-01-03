@@ -31,40 +31,40 @@ import java.util.ResourceBundle;
  */
 public class PostsController implements Initializable {
 
+    final static Stage NEW_POST_STAGE = new Stage();
     private static PostsController postsController;
-
     @FXML
     public Label usernameLabel;
-
     @FXML
     public JFXButton newPostBtn;
-
     @FXML
     public JFXButton refreshBtn;
-
     @FXML
     public JFXListView<Post> postListView;
-
     @FXML
     public JFXButton loadMoreBtn;
-
     @FXML
     public Label updateCountLabel;
-
-    final static Stage NEW_POST_STAGE = new Stage();
-
     private ObservableList<Post> postDataList;
 
     private PostDAO postDAO;
 
     private int page = 0;
 
+    public static Stage getNewPostStage() {
+        return NEW_POST_STAGE;
+    }
+
+    static PostsController getPostsController() {
+        return postsController;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         usernameLabel.setText( "Hello," + Main.getApp().getCurrentUser().getUserID() );
         postsController = this;
         postDAO = new PostDAO();
-        KeyFrame update = new KeyFrame( Duration.minutes( ConstantSetting.UPDATE_PERIOD_MIN),event -> {
+        KeyFrame update = new KeyFrame( Duration.minutes( ConstantSetting.UPDATE_PERIOD_MIN ), event -> {
             int count = 0;
             if (postDataList.size() > 0) {
                 System.out.println( postDataList.get( 0 ).getTimeStamp() );
@@ -85,10 +85,6 @@ public class PostsController implements Initializable {
         postListView.setItems( postDataList );
         System.out.println( postListView.getItems().size() );
         postListView.setCellFactory( param -> new PostCellFactory() );
-    }
-
-    public static Stage getNewPostStage() {
-        return NEW_POST_STAGE;
     }
 
     public void handleNewPostBtnAction(ActionEvent event) throws IOException {
@@ -117,10 +113,6 @@ public class PostsController implements Initializable {
         postDataList.clear();
         page = 0;
         postDataList.addAll( postDAO.getPosts( page ) );
-    }
-
-    static PostsController getPostsController() {
-        return postsController;
     }
 
     public void handleLogOutBtnAction(ActionEvent event) {

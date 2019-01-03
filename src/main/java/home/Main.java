@@ -25,14 +25,16 @@ import java.sql.SQLException;
  */
 public class Main extends Application {
 
-    private Stage stage;
-
     private static Main app;
-
+    private Stage stage;
     private User currentUser;
 
     public static Main getApp() {
         return app;
+    }
+
+    public static void main(String[] args) {
+        launch( args );
     }
 
     @Override
@@ -41,7 +43,7 @@ public class Main extends Application {
         stage = primaryStage;
         stage.initStyle( StageStyle.UNIFIED );
         stage.setTitle( ConstantSetting.TITLE );
-        stage.getIcons().add(new Image( "icon/timeline.png"));
+        stage.getIcons().add( new Image( "icon/timeline.png" ) );
         startUp();
     }
 
@@ -95,7 +97,7 @@ public class Main extends Application {
             page = loader.load( in );
             Scene scene = new Scene( page, ConstantSetting.START_UP_SCENE_SIZE.width,
                     ConstantSetting.START_UP_SCENE_SIZE.height );
-            scene.getStylesheets().addAll("timeline_style.css");
+            scene.getStylesheets().addAll( "timeline_style.css" );
             stage.setScene( scene );
             stage.sizeToScene();
             return (Initializable) loader.getController();
@@ -115,10 +117,6 @@ public class Main extends Application {
 
     public User getCurrentUser() {
         return currentUser;
-    }
-
-    public static void main(String[] args) {
-        launch( args );
     }
 
 }

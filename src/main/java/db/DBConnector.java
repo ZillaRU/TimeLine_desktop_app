@@ -14,12 +14,15 @@ import java.util.Properties;
 public class DBConnector {
     private final static DBConnector INSTANCE = new DBConnector();
     private Connection conn = null;
+
     public static DBConnector getInstance() {
         return INSTANCE;
     }
+
     public Connection getConnection() {
         return conn;
     }
+
     public Connection createConnection(String url, String user, String password, String database) throws SQLException {
         System.out.println( "createConnection" );
         if (conn != null) {
@@ -29,11 +32,11 @@ public class DBConnector {
         try {
             System.out.println( "try" );
             Properties connectionProps = new Properties();
-            connectionProps.put("user", user);
-            connectionProps.put("password", password);
-            connectionProps.put("database", database);
+            connectionProps.put( "user", user );
+            connectionProps.put( "password", password );
+            connectionProps.put( "database", database );
             conn = DriverManager.getConnection( url + database + ConstantSetting.DB_ENCODE, connectionProps );
-        } catch(SQLException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
         }

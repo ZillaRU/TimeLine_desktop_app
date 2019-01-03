@@ -14,8 +14,8 @@ public class PostCellFactory extends ListCell<Post> {
     protected void updateItem(Post item, boolean empty) {
         if (null != item && !empty) {
             PostCell postCell = new PostCell();
-            postCell.setPostContent(item);
-            setGraphic(postCell.getBox());
+            postCell.setPostContent( item );
+            setGraphic( postCell.getBox() );
         }
     }
 }

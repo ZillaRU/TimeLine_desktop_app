@@ -24,10 +24,6 @@ public class Post {
         this.content = content;
     }
 
-    public void setImgFiles(List<String> imgFiles) {
-        this.imgFiles = imgFiles;
-    }
-
     public String getPostID() {
         return postID;
     }
@@ -52,10 +48,14 @@ public class Post {
         return imgFiles;
     }
 
+    public void setImgFiles(List<String> imgFiles) {
+        this.imgFiles = imgFiles;
+    }
+
     @Override
     public String toString() {
-        return this.userID+"\n"
-                +this.content+"\n"
-                +this.timeStamp;
+        return this.userID + "\n"
+                + this.content + "\n"
+                + this.timeStamp;
     }
 }

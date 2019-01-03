@@ -6,8 +6,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<StackPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
-           xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PostsController">
+<StackPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0"
+           xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="controller.PostsController">
     <BorderPane>
         <top>
             <HBox prefHeight="44" spacing="20">

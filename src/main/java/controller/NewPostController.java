@@ -20,21 +20,20 @@ import java.util.List;
  * @date: 2018/12/20 18:15
  */
 public class NewPostController {
+    private final FileChooser fileChooser = new FileChooser();
     @FXML
     public JFXButton submitBtn;
     @FXML
     public JFXTextArea contentText;
     @FXML
     public JFXButton uploadImageBtn;
-
-    private final FileChooser fileChooser = new FileChooser();
     private List<File> imageFileList = null;
 
     public void handleSubmitAction(ActionEvent event) {
         Post newPost = new Post( IdGenerator.getId(), Main.getApp().getCurrentUser().getUserID(),
                 null, imageFileList != null, contentText.getText() );
         if (new PostDAO().addPost( newPost, imageFileList )) {
-            AlertHelper.showJDialog(Main.getApp().getStage(),
+            AlertHelper.showJDialog( Main.getApp().getStage(),
                     ConstantSetting.ALERT_TITLE,
                     "Post successfully~" );
             PostsController.NEW_POST_STAGE.close();

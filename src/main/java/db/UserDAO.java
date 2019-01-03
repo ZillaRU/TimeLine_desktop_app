@@ -33,10 +33,9 @@ public class UserDAO {
             String stmt = "SELECT count(*) as userExist\n" +
                     "FROM userinfo\n" +
                     "WHERE username=? AND password=MD5(?);";
-            System.out.println( stmt );
             PreparedStatement preparedStatement = con.prepareStatement( stmt );
             preparedStatement.setString( 1, name );
-            preparedStatement.setString( 2, password);
+            preparedStatement.setString( 2, password );
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet != null) {
                 try {

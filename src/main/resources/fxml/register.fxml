@@ -6,10 +6,12 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
-<GridPane fx:controller="controller.RegisterController"
-          xmlns:fx="http://javafx.com/fxml" alignment="center"
+<GridPane xmlns:fx="http://javafx.com/fxml"
+          fx:controller="controller.RegisterController" alignment="center"
           hgap="10" vgap="10">
-    <padding><Insets top="40" right="40" bottom="40" left="40"/></padding>
+    <padding>
+        <Insets top="40" right="40" bottom="40" left="40"/>
+    </padding>
     <columnConstraints>
         <ColumnConstraints minWidth="100" prefWidth="100"
                            maxWidth="Infinity" halignment="RIGHT">
@@ -23,18 +25,17 @@
     <Label text="Sign Up Now" styleClass="head-label"
            GridPane.columnIndex="0"
            GridPane.rowIndex="0" GridPane.columnSpan="2"
-           GridPane.rowSpan="1" GridPane.halignment="CENTER" >
+           GridPane.rowSpan="1" GridPane.halignment="CENTER">
         <GridPane.margin>
             <Insets top="20" right="0" bottom="20" left="0"></Insets>
         </GridPane.margin>
     </Label>
 
 
-
     <!-- Add Name Label -->
     <Label text="Username  " styleClass="usual-label"
            GridPane.columnIndex="0"
-           GridPane.rowIndex="1" >
+           GridPane.rowIndex="1">
     </Label>
     <!-- Add Name Text Field -->
     <JFXTextField fx:id="nameField"
@@ -45,7 +46,7 @@
     <!-- Add Password Label -->
     <Label text="Password  " styleClass="usual-label"
            GridPane.columnIndex="0"
-           GridPane.rowIndex="2" >
+           GridPane.rowIndex="2">
     </Label>
     <!-- Add Password Field -->
     <JFXPasswordField fx:id="passwordField"
@@ -57,11 +58,11 @@
     <Label text="Repeat Password  " styleClass="usual-label"
            wrapText="true"
            GridPane.columnIndex="0"
-           GridPane.rowIndex="3" >
+           GridPane.rowIndex="3">
     </Label>
     <!-- Add Password Field -->
     <JFXPasswordField fx:id="rePasswordField" prefHeight="40"
-                   GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                      GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
     <!-- Add Submit JFXButton -->
     <JFXButton fx:id="signUpJFXButton" text="Sign Up"

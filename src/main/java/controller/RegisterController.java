@@ -48,17 +48,17 @@ public class RegisterController {
         }
 
         if (!pass2.equals( pass1 )) {
-            AlertHelper.showJDialog(Main.getApp().getStage(),
+            AlertHelper.showJDialog( Main.getApp().getStage(),
                     ConstantSetting.ALERT_TITLE,
                     "Inconsistent passwords!" );
             return;
         }
 
         if (new UserDAO().register( name, pass1 )) {
-            AlertHelper.showJDialog(Main.getApp().getStage(),
+            AlertHelper.showJDialog( Main.getApp().getStage(),
                     "Registration succeeded", "Welcome " + name + " !\nPlease log in and enjoy your time." );
         } else {
-            AlertHelper.showJDialog(Main.getApp().getStage(),
+            AlertHelper.showJDialog( Main.getApp().getStage(),
                     "Registration failed!", "The username already exists" );
         }
     }

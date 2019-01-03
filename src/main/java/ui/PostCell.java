@@ -53,7 +53,7 @@ public class PostCell extends JFXListCell<Post> {
 
     public void setPostContent(Post item) {
         username.setText( item.getUserID() );
-        updateTime.setText( TimeDisplay.format(item.getTimeStamp()));
+        updateTime.setText( TimeDisplay.format( item.getTimeStamp() ) );
         content.setText( item.getContent() );
         if (item.isWithImgs()) {
             List<String> urls = new ArrayList<>( item.getImgFiles() );
@@ -61,12 +61,12 @@ public class PostCell extends JFXListCell<Post> {
                 String fileUrl = ConstantSetting.POST_IMAGE_PATH + imageUrl;
                 BufferedImage bufferedImage;
                 try {
-                    bufferedImage = ImageIO.read( new File(fileUrl));
+                    bufferedImage = ImageIO.read( new File( fileUrl ) );
                     Image image = SwingFXUtils.toFXImage( bufferedImage, null );
                     ImageView imageView = new ImageView( image );
                     imageView.setFitHeight( 80 );
                     imageView.setFitWidth( 70 );
-                    imageHBox.getChildren().add(imageView );
+                    imageHBox.getChildren().add( imageView );
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
