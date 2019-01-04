@@ -12,7 +12,7 @@ public class TimeDisplay {
     private static final long ONE_DAY = 86400000L;
     private static final long ONE_WEEK = 604800000L;
 
-    private static final String ONE_SECOND_AGO = " sec ago";
+    private static final String ONE_SECOND_AGO = "Just now";
     private static final String ONE_MINUTE_AGO = " min ago";
     private static final String ONE_HOUR_AGO = " hr ago";
     private static final String ONE_DAY_AGO = " d ago";
@@ -22,8 +22,7 @@ public class TimeDisplay {
     public static String format(Date date) {
         long delta = System.currentTimeMillis() - date.getTime();
         if (delta < ONE_MINUTE) {
-            long seconds = toSeconds( delta );
-            return (seconds <= 0 ? 1 : seconds) + ONE_SECOND_AGO;
+            return ONE_SECOND_AGO;
         }
         if (delta < 45L * ONE_MINUTE) {
             long minutes = toMinutes( delta );

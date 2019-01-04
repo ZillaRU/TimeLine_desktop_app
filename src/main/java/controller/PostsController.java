@@ -17,6 +17,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Post;
@@ -32,7 +34,10 @@ import java.util.ResourceBundle;
 public class PostsController implements Initializable {
 
     final static Stage NEW_POST_STAGE = new Stage();
+
     private static PostsController postsController;
+    @FXML
+    public BorderPane postsBorderPane;
     @FXML
     public Label usernameLabel;
     @FXML
@@ -45,11 +50,14 @@ public class PostsController implements Initializable {
     public JFXButton loadMoreBtn;
     @FXML
     public Label updateCountLabel;
+
     private ObservableList<Post> postDataList;
 
     private PostDAO postDAO;
 
     private int page = 0;
+
+    private Text hintLabel;
 
     public static Stage getNewPostStage() {
         return NEW_POST_STAGE;
@@ -79,12 +87,22 @@ public class PostsController implements Initializable {
         Timeline tl = new Timeline( update );
         tl.setCycleCount( Timeline.INDEFINITE );
         tl.play();
+        hintLabel = new Text( "No posts..." );
+        hintLabel.getStyleClass().add( "hint-label" );
+        hintLabel.setId( "hintLabel" );
         postDataList = FXCollections.observableArrayList();
         page = 0;
         postDataList.addAll( postDAO.getPosts( page++ ) );
+        postListView = new JFXListView<>();
+        postListView.setId( "postListView" );
+        postListView.getStyleClass().add( "table-view" );
         postListView.setItems( postDataList );
-        System.out.println( postListView.getItems().size() );
         postListView.setCellFactory( param -> new PostCellFactory() );
+        if (postDataList.size() != 0) {
+            postsBorderPane.setCenter( postListView );
+        } else {
+            postsBorderPane.setCenter( hintLabel );
+        }
     }
 
     public void handleNewPostBtnAction(ActionEvent event) throws IOException {
@@ -113,6 +131,9 @@ public class PostsController implements Initializable {
         postDataList.clear();
         page = 0;
         postDataList.addAll( postDAO.getPosts( page ) );
+        if (postsBorderPane.getCenter() == null || postDataList.size() != 0) {
+            postsBorderPane.setCenter( postListView );
+        }
     }
 
     public void handleLogOutBtnAction(ActionEvent event) {

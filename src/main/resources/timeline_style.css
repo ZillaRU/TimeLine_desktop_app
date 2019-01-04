@@ -272,3 +272,12 @@
     -fx-wrap-text: true;
     -fx-font-size: 13px;
 }
+
+.hint-label {
+    -fx-pref-width: 480;
+    -fx-pref-height: 500;
+    -fx-wrap-text: true;
+    -fx-fill: white;
+    -fx-font-size: 24px;
+    -fx-text-alignment: center;
+}

@@ -4,16 +4,16 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<fx:root xmlns:fx="http://javafx.com/fxml" type="com.jfoenix.controls.JFXListCell" prefHeight="130.0">
-    <VBox fx:id="postBox" spacing="2" prefWidth="460">
+<fx:root xmlns:fx="http://javafx.com/fxml" type="com.jfoenix.controls.JFXListCell">
+    <VBox fx:id="postBox" spacing="4" prefWidth="430">
         <children>
             <Label fx:id="username"
-                   styleClass="post_item" textFill="grey"/>
+                   styleClass="post_item" textFill="dimgray"/>
             <Label fx:id="content"
                    wrapText="true"
                    styleClass="post_item"/>
             <HBox fx:id="imageHBox" spacing="3"/>
-            <Label fx:id="updateTime" styleClass="post_item" textFill="lightblue"/>
+            <Label fx:id="updateTime" styleClass="post_item" textFill="mediumpurple"/>
         </children>
     </VBox>
 </fx:root>
