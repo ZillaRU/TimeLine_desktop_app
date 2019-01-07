@@ -40,6 +40,10 @@ public class PostDAO {
                         String newImageName = IdGenerator.getId() + "."
                                 + originImageName.substring( originImageName.lastIndexOf( "." ) + 1 );
                         inputStream = new FileInputStream( file );
+                        File ca = new File( "./post_images" );
+                        if (!ca.exists()) {
+                            ca.mkdirs();
+                        }
                         outputStream = new FileOutputStream( ConstantSetting.POST_IMAGE_PATH + newImageName );
                         byte[] buffer = new byte[1024];
                         int cnt = 0;
