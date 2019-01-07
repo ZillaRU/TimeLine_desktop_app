@@ -1,6 +1,5 @@
 package controller;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import db.UserDAO;
@@ -8,21 +7,14 @@ import home.ConstantSetting;
 import home.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.stage.Window;
 import model.User;
 import utils.AlertHelper;
-import utils.FormatChecker;
-
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
 
 /**
  * @author: zilla0148
  * @date: 2018/12/17 14:40
  */
-public class LoginController implements Initializable {
+public class LoginController {
 
     private Main app = Main.getApp();
 
@@ -33,11 +25,7 @@ public class LoginController implements Initializable {
     private JFXPasswordField passwordField;
 
     @FXML
-    private JFXButton signInButton;
-
-    @FXML
-    protected void handleLogInJFXButtonAction(ActionEvent event) throws SQLException {
-        Window owner = signInButton.getScene().getWindow();
+    protected void handleLogInJFXButtonAction(ActionEvent event) {
         String inputName = nameField.getText();
         String inputPassword = passwordField.getText();
         if (inputName.isEmpty()) {
@@ -48,14 +36,7 @@ public class LoginController implements Initializable {
             AlertHelper.showJDialog( app.getStage(),
                     ConstantSetting.ALERT_TITLE, "Password cannot be empty." );
             return;
-        } else {
-            if (!FormatChecker.isLetterDigit( inputPassword )) {
-                AlertHelper.showJDialog( app.getStage(),
-                        ConstantSetting.ALERT_TITLE, "Password format error.\nOnly contain 0-9,a-z,A-Z length: 6-18" );
-                return;
-            }
         }
-
 
         if (new UserDAO().getAccount( inputName, inputPassword ) == 1) {
             app.setUser( new User( inputName ) );
@@ -64,11 +45,7 @@ public class LoginController implements Initializable {
                     ConstantSetting.ALERT_TITLE, "Welcome " + inputName );
         } else {
             AlertHelper.showJDialog( app.getStage(),
-                    ConstantSetting.ALERT_TITLE, "User not found..." );
+                    ConstantSetting.ALERT_TITLE, "Wrong username and/or password" );
         }
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
     }
 }

@@ -17,9 +17,9 @@
     -fx-text-fill: -fx-primarytext;
     -fx-background-color: -fx-primary;
     -fx-border-color: -fx-secondary;
-    -fx-pref-height: 20px;
+    -fx-pref-height: 18px;
     -fx-border-radius: 12px;
-    -fx-background-radius: 20px;
+    -fx-background-radius: 18px;
     -fx-font-size: 12pt;
 }
 

@@ -52,10 +52,4 @@ public class Post {
         this.imgFiles = imgFiles;
     }
 
-    @Override
-    public String toString() {
-        return this.userID + "\n"
-                + this.content + "\n"
-                + this.timeStamp;
-    }
 }

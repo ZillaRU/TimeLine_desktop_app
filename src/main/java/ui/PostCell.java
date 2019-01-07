@@ -8,7 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Post;
 import utils.TimeDisplay;
@@ -34,24 +33,20 @@ public class PostCell extends JFXListCell<Post> {
     @FXML
     Label content;
     @FXML
-    HBox imageHBox;
+    VBox imageVBox;
 
     FXMLLoader fxmlLoader;
 
-    public PostCell() {
+    public PostCell() throws IOException {
         fxmlLoader = new FXMLLoader( getClass().getResource(
                 "/fxml/post_cell.fxml" ) );
         fxmlLoader.setRoot( this );
         fxmlLoader.setController( this );
-        try {
-            setGraphic( fxmlLoader.load() );
-        } catch (IOException exception) {
-            throw new RuntimeException( exception );
-        }
+        setGraphic( fxmlLoader.load() );
     }
 
 
-    public void setPostContent(Post item) {
+    public void setPostContent(Post item) throws IOException {
         username.setText( item.getUserID() );
         updateTime.setText( TimeDisplay.format( item.getTimeStamp() ) );
         content.setText( item.getContent() );
@@ -60,16 +55,12 @@ public class PostCell extends JFXListCell<Post> {
             for (String imageUrl : urls) {
                 String fileUrl = ConstantSetting.POST_IMAGE_PATH + imageUrl;
                 BufferedImage bufferedImage;
-                try {
-                    bufferedImage = ImageIO.read( new File( fileUrl ) );
-                    Image image = SwingFXUtils.toFXImage( bufferedImage, null );
-                    ImageView imageView = new ImageView( image );
-                    imageView.setPreserveRatio( true );
-                    imageView.setFitHeight( 120 );
-                    imageHBox.getChildren().add( imageView );
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                bufferedImage = ImageIO.read( new File( fileUrl ) );
+                Image image = SwingFXUtils.toFXImage( bufferedImage, null );
+                ImageView imageView = new ImageView( image );
+                imageView.setPreserveRatio( true );
+                imageView.setFitWidth( 300 );
+                imageVBox.getChildren().add( imageView );
             }
         }
     }

@@ -16,10 +16,8 @@ import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.base.NodeMatchers.isVisible;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
-//import org.junit.Test;
-
 public class MainTest extends ApplicationTest {
-    Stage stage;
+    private Stage stage;
 
     @Before
     public void setup() throws Exception {
@@ -49,7 +47,6 @@ public class MainTest extends ApplicationTest {
 
     @Test
     public void login_with_wrong_username() {
-
         String strname = "cse";
         FxRobot robot = new FxRobot();
         robot.clickOn( "#passwordField" ).write( "dd112211" );

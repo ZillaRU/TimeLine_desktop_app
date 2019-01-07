@@ -9,7 +9,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -59,7 +58,7 @@ public class PostsController implements Initializable {
 
     private Text hintLabel;
 
-    public static Stage getNewPostStage() {
+    static Stage getNewPostStage() {
         return NEW_POST_STAGE;
     }
 
@@ -105,10 +104,8 @@ public class PostsController implements Initializable {
         }
     }
 
-    public void handleNewPostBtnAction(ActionEvent event) throws IOException {
-        Main.getApp().getStage().setOnCloseRequest( event1 -> {
-            NEW_POST_STAGE.close();
-        } );
+    public void handleNewPostBtnAction() throws IOException {
+        Main.getApp().getStage().setOnCloseRequest( event1 -> NEW_POST_STAGE.close() );
         Parent target = FXMLLoader.load( getClass().getResource( "/fxml/new_post.fxml" ) );
         Scene scene = new Scene( target );
         scene.getStylesheets().add( "timeline_style.css" );
@@ -119,11 +116,11 @@ public class PostsController implements Initializable {
         NEW_POST_STAGE.show();
     }
 
-    public void handleRefreshBtnAction(ActionEvent event) {
+    public void handleRefreshBtnAction() {
         refresh();
     }
 
-    public void handleLoadMoreBtnAction(ActionEvent event) {
+    public void handleLoadMoreBtnAction() {
         postDataList.addAll( postDAO.getPosts( ++page ) );
     }
 
@@ -136,7 +133,7 @@ public class PostsController implements Initializable {
         }
     }
 
-    public void handleLogOutBtnAction(ActionEvent event) {
+    public void handleLogOutBtnAction() {
         Main.getApp().setUser( null );
         Main.getApp().startUp();
     }

@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXTextField;
 import db.UserDAO;
 import home.ConstantSetting;
 import home.Main;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import utils.AlertHelper;
 import utils.FormatChecker;
@@ -26,7 +25,7 @@ public class RegisterController {
     private JFXPasswordField rePasswordField;
 
     @FXML
-    protected void handleSignUpJFXButtonAction(ActionEvent event) {
+    protected void handleSignUpJFXButtonAction() {
         String name = nameField.getText();
         String pass1 = passwordField.getText();
         String pass2 = rePasswordField.getText();
@@ -36,12 +35,12 @@ public class RegisterController {
                     "The required information is incomplete." );
             return;
         }
-        if (!FormatChecker.isLetterDigit( name )) {
+        if (FormatChecker.hasFormatMismatch( name )) {
             AlertHelper.showJDialog( Main.getApp().getStage(),
                     ConstantSetting.ALERT_TITLE, "Username format error.\nOnly contain 0-9,a-z,A-Z length: 6-18" );
             return;
         }
-        if (!FormatChecker.isLetterDigit( pass1 )) {
+        if (FormatChecker.hasFormatMismatch( pass1 )) {
             AlertHelper.showJDialog( Main.getApp().getStage(),
                     ConstantSetting.ALERT_TITLE, "Password format error.\nOnly contain 0-9,a-z,A-Z length: 6-18" );
             return;
@@ -59,7 +58,7 @@ public class RegisterController {
                     "Registration succeeded", "Welcome " + name + " !\nPlease log in and enjoy your time." );
         } else {
             AlertHelper.showJDialog( Main.getApp().getStage(),
-                    "Registration failed!", "The username already exists" );
+                    "Registration failed", "The username already exists" );
         }
     }
 }

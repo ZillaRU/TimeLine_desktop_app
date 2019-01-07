@@ -5,7 +5,7 @@ package utils;
  * @date: 2018/12/26 10:32
  */
 public class FormatChecker {
-    public static boolean isLetterDigit(String str) {
+    public static boolean hasFormatMismatch(String str) {
         boolean isDigit = false;
         boolean isLetter = false;
         for (int i = 0; i < str.length(); i++) {
@@ -16,6 +16,6 @@ public class FormatChecker {
             }
         }
         String regex = "^[a-zA-Z0-9]{6,18}$";
-        return isDigit && isLetter && str.matches( regex );
+        return !isDigit || !isLetter || !str.matches( regex );
     }
 }

@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXTextArea;
 import db.PostDAO;
 import home.ConstantSetting;
 import home.Main;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.stage.FileChooser;
 import model.Post;
@@ -29,7 +28,7 @@ public class NewPostController {
     public JFXButton uploadImageBtn;
     private List<File> imageFileList = null;
 
-    public void handleSubmitAction(ActionEvent event) {
+    public void handleSubmitAction() {
         Post newPost = new Post( IdGenerator.getId(), Main.getApp().getCurrentUser().getUserID(),
                 null, imageFileList != null, contentText.getText() );
         if (new PostDAO().addPost( newPost, imageFileList )) {
@@ -42,7 +41,7 @@ public class NewPostController {
     }
 
 
-    public void handleUploadImageAction(ActionEvent event) {
+    public void handleUploadImageAction() {
         fileChooser.setTitle( "Open Image File" );
         fileChooser.setSelectedExtensionFilter( new FileChooser.ExtensionFilter( "image", "jpg", "png", "jpeg", "bmp" ) );
         imageFileList = fileChooser.showOpenMultipleDialog( PostsController.getNewPostStage() );
