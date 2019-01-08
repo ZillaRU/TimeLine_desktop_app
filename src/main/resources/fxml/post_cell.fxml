@@ -2,18 +2,21 @@
 
 <?import com.jfoenix.controls.JFXListCell?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <fx:root xmlns:fx="http://javafx.com/fxml" type="com.jfoenix.controls.JFXListCell">
-    <VBox fx:id="postBox" spacing="4" prefWidth="430">
-        <children>
-            <Label fx:id="username"
-                   styleClass="post_item" textFill="dimgray"/>
-            <Label fx:id="content"
-                   wrapText="true"
-                   styleClass="post_item"/>
-            <VBox fx:id="imageVBox" spacing="3"/>
-            <Label fx:id="updateTime" styleClass="post_item" textFill="mediumpurple"/>
-        </children>
+    <VBox fx:id="postBox" prefWidth="470" prefHeight="182" spacing="8">
+        <VBox spacing="6" prefWidth="470" prefHeight="155">
+            <children>
+                <Label fx:id="username"
+                       styleClass="post_item" textFill="dimgray"/>
+                <Label fx:id="content"
+                       wrapText="true"
+                       styleClass="post_item"/>
+                <HBox fx:id="imageHBox" spacing="3"/>
+            </children>
+        </VBox>
+        <Label fx:id="updateTime" styleClass="post_item" textFill="mediumpurple"/>
     </VBox>
 </fx:root>
 

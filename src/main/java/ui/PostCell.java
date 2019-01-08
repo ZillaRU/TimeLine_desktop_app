@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Post;
 import utils.TimeDisplay;
@@ -33,7 +34,7 @@ public class PostCell extends JFXListCell<Post> {
     @FXML
     Label content;
     @FXML
-    VBox imageVBox;
+    HBox imageHBox;
 
     FXMLLoader fxmlLoader;
 
@@ -59,8 +60,8 @@ public class PostCell extends JFXListCell<Post> {
                 Image image = SwingFXUtils.toFXImage( bufferedImage, null );
                 ImageView imageView = new ImageView( image );
                 imageView.setPreserveRatio( true );
-                imageView.setFitWidth( 300 );
-                imageVBox.getChildren().add( imageView );
+                imageView.setFitHeight( 114 );
+                imageHBox.getChildren().add( imageView );
             }
         }
     }

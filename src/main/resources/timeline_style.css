@@ -12,10 +12,10 @@
     -fx-text-fill: -fx-primarytext;
     -fx-background-color: -fx-primary;
     -fx-border-color: -fx-secondary;
-    -fx-pref-height: 18px;
-    -fx-border-radius: 12px;
-    -fx-background-radius: 18px;
-    -fx-font-size: 12pt;
+    -fx-pref-height: 15px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 15px;
+    -fx-font-size: 10pt;
 }
 
 .button:hover, .button:focused {
@@ -165,7 +165,7 @@
     -fx-wrap-text: true;
     -fx-fill: white;
     -fx-text-fill: white;
-    -fx-font-size: 14px;
+    -fx-font-size: 13px;
 }
 
 .post_item {

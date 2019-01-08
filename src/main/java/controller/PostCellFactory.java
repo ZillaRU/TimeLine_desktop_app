@@ -12,6 +12,7 @@ import java.io.IOException;
  */
 
 public class PostCellFactory extends ListCell<Post> {
+
     @Override
     protected void updateItem(Post item, boolean empty) {
         if (null != item && !empty) {

@@ -10,14 +10,13 @@
            xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="controller.PostsController">
     <BorderPane fx:id="postsBorderPane">
         <top>
-            <HBox prefHeight="44" spacing="20">
+            <HBox prefHeight="70" spacing="20">
                 <Label fx:id="updateCountLabel" styleClass="usual-label"/>
-                <VBox fx:id="vboxLogOut" spacing="2">
-                    <Label fx:id="usernameLabel" prefWidth="150"
+                <VBox fx:id="vboxLogOut" spacing="10">
+                    <Label fx:id="usernameLabel" prefWidth="250"
                            styleClass="usual-label" wrapText="true"/>
                     <JFXButton fx:id="logOutBtn"
                                text="Log out"
-                               prefHeight="20"
                                onAction="#handleLogOutBtnAction"/>
                 </VBox>
                 <JFXButton fx:id="newPostBtn" onAction="#handleNewPostBtnAction" text="New post"/>
