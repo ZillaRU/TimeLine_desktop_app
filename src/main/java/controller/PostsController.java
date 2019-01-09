@@ -91,7 +91,7 @@ public class PostsController implements Initializable {
         hintLabel.setId( "hintLabel" );
         postDataList = FXCollections.observableArrayList();
         page = 0;
-        postDataList.addAll( postDAO.getPosts( page++ ) );
+        postDataList.addAll(postDAO.getPosts(page));
         postListView = new JFXListView<>();
         postListView.setId( "postListView" );
         postListView.getStyleClass().add( "table-view" );
