@@ -30,7 +30,7 @@ public class NewPostController {
 
     public void handleSubmitAction() {
         Post newPost = new Post( IdGenerator.getId(), Main.getApp().getCurrentUser().getUserID(),
-                null, imageFileList != null, contentText.getText() );
+                null, imageFileList != null && imageFileList.size() != 0, contentText.getText());
         if (new PostDAO().addPost( newPost, imageFileList )) {
             AlertHelper.showJDialog( Main.getApp().getStage(),
                     ConstantSetting.ALERT_TITLE,

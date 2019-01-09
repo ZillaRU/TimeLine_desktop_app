@@ -13,7 +13,7 @@
             <HBox prefHeight="70" spacing="20">
                 <Label fx:id="updateCountLabel" styleClass="usual-label"/>
                 <VBox fx:id="vboxLogOut" spacing="10">
-                    <Label fx:id="usernameLabel" prefWidth="250"
+                    <Label fx:id="usernameLabel" prefWidth="220"
                            styleClass="usual-label" wrapText="true"/>
                     <JFXButton fx:id="logOutBtn"
                                text="Log out"

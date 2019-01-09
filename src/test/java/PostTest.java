@@ -17,23 +17,22 @@ import static org.testfx.matcher.base.NodeMatchers.isVisible;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
 public class PostTest extends ApplicationTest {
-    Stage stage;
     private static final Logger LOG = LoggerFactory.getLogger( PostTest.class );
+    Stage stage;
     private int stepNo;
 
     @Before
     public void setup() throws Exception {
         stage = FxToolkit.registerPrimaryStage();
         FxToolkit.setupApplication( Main.class );
-        clickOn( "#nameField" ).write( "1w1w1w" );
-        clickOn( "#passwordField" ).write( "1w1w1w" );
+        clickOn("#nameField").write("qqq123");
+        clickOn("#passwordField").write("qqq123");
         clickOn( "#signInButton" );
         clickOn( "#closeBtn" );
     }
 
     @After
     public void cleanup() {
-
     }
 
     @Test
@@ -51,7 +50,7 @@ public class PostTest extends ApplicationTest {
         step( "Complete post", () -> {
             clickOn( "#submitBtn" );
             WaitForAsyncUtils.sleep( 2, TimeUnit.SECONDS );
-            verifyThat( lookup( "#username" ).nth( 0 ), hasText( "1w1w1w" ) );
+            verifyThat(lookup("#username").nth(0), hasText("qqq123"));
             verifyThat( lookup( "#content" ).nth( 0 ), hasText( "adksfnckadsbvfkdnv!234341@#$测试数据" ) );
             verifyThat( lookup( "#updateTime" ).nth( 0 ), hasText( "Just now" ) );
         } );
@@ -68,23 +67,30 @@ public class PostTest extends ApplicationTest {
             clickOn( "#newPostBtn" );
             clickOn( "#contentText" ).write( "adksfnckadsbvfkdnv!234341@#$测试数据" );
             clickOn( "#uploadImageBtn" ).press( KeyCode.RIGHT ).press( KeyCode.ENTER );
+
         } );
 
         step( "Complete post", () -> {
             clickOn( "#submitBtn" );
             WaitForAsyncUtils.sleep( 2, TimeUnit.SECONDS );
-            verifyThat( lookup( "#username" ).nth( 0 ), hasText( "1w1w1w" ) );
+            verifyThat(lookup("#username").nth(0), hasText("qqq123"));
             verifyThat( lookup( "#content" ).nth( 0 ), hasText( "adksfnckadsbvfkdnv!234341@#$测试数据" ) );
             verifyThat( lookup( "#updateTime" ).nth( 0 ), hasText( "Just now" ) );
         } );
     }
 
     @Test
-    public void show_3_post_as_default() {
-        verifyThat( lookup( "#postBox" ).nth( 1 ), isVisible() );
-        verifyThat( lookup( "#postBox" ).nth( 2 ), isVisible() );
-        verifyThat( lookup( "#postBox" ).nth( 3 ), isVisible() );
-        System.out.println( lookup( "#username" ).nth( 1 ).toString() );
+    public void show_main_page() {
+        if (lookup("#postBox").query().isVisible()) {
+            verifyThat(lookup("#postBox").nth(1), isVisible());
+            verifyThat(lookup("#postBox").nth(2), isVisible());
+            verifyThat(lookup("#postBox").nth(3), isVisible());
+            System.out.println(lookup("#username").nth(1).toString());
+        } else {
+            verifyThat("#hintLabel", isVisible());
+
+        }
+
     }
 
 

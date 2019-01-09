@@ -79,8 +79,8 @@ public class PostsController implements Initializable {
             }
             if (count > 0) {
                 updateCountLabel.setText( "new " + String.valueOf( count ) );
-            } else if (count < 0) {
-                updateCountLabel.setText( "failed" );
+            } else if (count == 0) {
+                updateCountLabel.setText("");
             }
         } );
         Timeline tl = new Timeline( update );

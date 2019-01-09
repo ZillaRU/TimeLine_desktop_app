@@ -5,10 +5,6 @@ import org.junit.Test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-/**
- * @author: zilla0148
- * @date: 2019/1/6 14:16
- */
 public class FormatCheckerTest {
     @Test
     public void input_in_illegal_format_return_false() {
@@ -24,6 +20,9 @@ public class FormatCheckerTest {
         //without alphabet
         res = FormatChecker.hasFormatMismatch( "12342341" );
         assertTrue( res );
+        //illegal word
+        res = FormatChecker.hasFormatMismatch("!@#$%^");
+        assertTrue(res);
     }
 
     @Test
