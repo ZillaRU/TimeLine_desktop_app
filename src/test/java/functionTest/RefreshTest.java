@@ -15,9 +15,9 @@ import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.base.NodeMatchers.isVisible;
 
 public class RefreshTest extends ApplicationTest {
-    private static final Logger LOG = LoggerFactory.getLogger(RefreshTest.class);
     Stage stage;
     Application main;
+    private static final Logger LOG = LoggerFactory.getLogger(RefreshTest.class);
     private int stepNo;
 
     @Before
@@ -39,6 +39,7 @@ public class RefreshTest extends ApplicationTest {
             clickOn("#passwordField").write(TestConstants.ANOTHER_PASSWORD);
             clickOn("#signInButton");
             clickOn("#closeBtn");
+            clickOn("#refreshBtn");
             verifyThat("#refreshBtn", isVisible());
         });
 
@@ -63,7 +64,6 @@ public class RefreshTest extends ApplicationTest {
 //
 //        });
     }
-
     private void step(final String step, final Runnable runnable) {
         ++stepNo;
         LOG.info("STEP {}: Begin - {}", stepNo, step);

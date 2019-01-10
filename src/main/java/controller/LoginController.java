@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXTextField;
 import db.UserDAO;
 import home.ConstantSetting;
 import home.Main;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import model.User;
 import utils.AlertHelper;
@@ -16,36 +15,39 @@ import utils.AlertHelper;
  */
 public class LoginController {
 
-    private Main app = Main.getApp();
+    protected Main app = Main.getApp();
+    AlertHelper alertHelper = new AlertHelper();
 
     @FXML
-    private JFXTextField nameField;
+    protected JFXTextField nameField;
 
     @FXML
-    private JFXPasswordField passwordField;
+    protected JFXPasswordField passwordField;
 
     @FXML
-    protected void handleLogInJFXButtonAction(ActionEvent event) {
+    protected String handleLogInJFXButtonAction() {//csy:去掉参数
         String inputName = nameField.getText();
         String inputPassword = passwordField.getText();
         if (inputName.isEmpty()) {
-            AlertHelper.showJDialog( app.getStage(),
+            alertHelper.showJDialog(app.getStage(),
                     ConstantSetting.ALERT_TITLE, "Username cannot be empty." );
-            return;
+            return "Username cannot be empty.";
         } else if (inputPassword.isEmpty()) {
-            AlertHelper.showJDialog( app.getStage(),
+            alertHelper.showJDialog(app.getStage(),
                     ConstantSetting.ALERT_TITLE, "Password cannot be empty." );
-            return;
+            return "Password cannot be empty.";
         }
 
         if (new UserDAO().getAccount( inputName, inputPassword ) == 1) {
             app.setUser( new User( inputName ) );
             app.switchHomepage();
-            AlertHelper.showJDialog( app.getStage(),
+            alertHelper.showJDialog(app.getStage(),
                     ConstantSetting.ALERT_TITLE, "Welcome " + inputName );
+            return "Welcome " + inputName;
         } else {
-            AlertHelper.showJDialog( app.getStage(),
+            alertHelper.showJDialog(app.getStage(),
                     ConstantSetting.ALERT_TITLE, "Wrong username and/or password" );
+            return "Wrong username and/or password";
         }
     }
 }

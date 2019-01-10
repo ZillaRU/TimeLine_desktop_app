@@ -1,5 +1,4 @@
 package utils;
-
 import home.Main;
 import javafx.application.Platform;
 import javafx.stage.Stage;
@@ -15,6 +14,7 @@ import static org.testfx.matcher.control.LabeledMatchers.hasText;
 public class AlertHelperTest extends ApplicationTest {
 
     private Stage stage;
+    AlertHelper alertHelper = new AlertHelper();
 
     @Before
     public void setUp() throws Exception {
@@ -30,7 +30,7 @@ public class AlertHelperTest extends ApplicationTest {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                AlertHelper.showJDialog(stage, head, body);
+                alertHelper.showJDialog(stage, head, body);
                 verifyThat("#headLabel", hasText("prompt"));
                 verifyThat("#contentLabel", hasText("Welcome"));
                 verifyThat("#closeBtn", hasText("Close"));

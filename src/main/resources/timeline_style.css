@@ -182,9 +182,9 @@
     -fx-text-alignment: center;
 }
 
-.scroll-bar {
-    -fx-opacity: 0;
-    -fx-padding: -7;
-    -fx-max-width: 0;
-    -fx-pref-width: 0;
-}
+/*.scroll-bar {*/
+/*-fx-opacity: 0;*/
+/*-fx-padding: -7;*/
+/*-fx-max-width: 0;*/
+/*-fx-pref-width: 0;*/
+/*}*/

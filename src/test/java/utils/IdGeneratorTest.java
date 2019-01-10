@@ -2,7 +2,7 @@ package utils;
 
 import org.junit.Test;
 
-import static org.hamcrest.core.StringStartsWith.startsWith;
+import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 

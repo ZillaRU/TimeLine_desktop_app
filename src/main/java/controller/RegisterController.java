@@ -14,51 +14,53 @@ import utils.FormatChecker;
  * @date: 2018/12/20 18:14
  */
 public class RegisterController {
+    AlertHelper alertHelper = new AlertHelper();
+    @FXML
+    protected JFXTextField nameField;
 
     @FXML
-    private JFXTextField nameField;
+    protected JFXPasswordField passwordField;
 
     @FXML
-    private JFXPasswordField passwordField;
+    protected JFXPasswordField rePasswordField;
 
     @FXML
-    private JFXPasswordField rePasswordField;
-
-    @FXML
-    protected void handleSignUpJFXButtonAction() {
+    protected String handleSignUpJFXButtonAction() {
         String name = nameField.getText();
         String pass1 = passwordField.getText();
         String pass2 = rePasswordField.getText();
         if (name.isEmpty() || pass1.isEmpty() || pass2.isEmpty()) {
-            AlertHelper.showJDialog( Main.getApp().getStage(),
+            alertHelper.showJDialog(Main.getApp().getStage(),
                     ConstantSetting.ALERT_TITLE,
                     "The required information is incomplete." );
-            return;
+            return "The required information is incomplete.";
         }
         if (FormatChecker.hasFormatMismatch( name )) {
-            AlertHelper.showJDialog( Main.getApp().getStage(),
+            alertHelper.showJDialog(Main.getApp().getStage(),
                     ConstantSetting.ALERT_TITLE, "Username format error.\nOnly contain 0-9,a-z,A-Z length: 6-18" );
-            return;
+            return "Username format error.Only contain 0-9,a-z,A-Z length: 6-18";
         }
         if (FormatChecker.hasFormatMismatch( pass1 )) {
-            AlertHelper.showJDialog( Main.getApp().getStage(),
+            alertHelper.showJDialog(Main.getApp().getStage(),
                     ConstantSetting.ALERT_TITLE, "Password format error.\nOnly contain 0-9,a-z,A-Z length: 6-18" );
-            return;
+            return "Password format error.Only contain 0-9,a-z,A-Z length: 6-18";
         }
 
         if (!pass2.equals( pass1 )) {
-            AlertHelper.showJDialog( Main.getApp().getStage(),
+            alertHelper.showJDialog(Main.getApp().getStage(),
                     ConstantSetting.ALERT_TITLE,
                     "Inconsistent passwords!" );
-            return;
+            return "Inconsistent passwords!";
         }
 
         if (new UserDAO().register( name, pass1 )) {
-            AlertHelper.showJDialog( Main.getApp().getStage(),
+            alertHelper.showJDialog(Main.getApp().getStage(),
                     "Registration succeeded", "Welcome " + name + " !\nPlease log in and enjoy your time." );
+            return "Please log in and enjoy your time.";
         } else {
-            AlertHelper.showJDialog( Main.getApp().getStage(),
+            alertHelper.showJDialog(Main.getApp().getStage(),
                     "Registration failed", "The username already exists" );
+            return "The username already exists";
         }
     }
 }

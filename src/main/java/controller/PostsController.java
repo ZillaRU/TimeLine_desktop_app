@@ -50,13 +50,13 @@ public class PostsController implements Initializable {
     @FXML
     public Label updateCountLabel;
 
-    private ObservableList<Post> postDataList;
+    protected ObservableList<Post> postDataList;
 
-    private PostDAO postDAO;
+    protected PostDAO postDAO;
 
-    private int page = 0;
+    protected int page = 0;
 
-    private Text hintLabel;
+    protected Text hintLabel;
 
     static Stage getNewPostStage() {
         return NEW_POST_STAGE;
@@ -69,6 +69,7 @@ public class PostsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         usernameLabel.setText( "Hello," + Main.getApp().getCurrentUser().getUserID() );
+        usernameLabel.setId("greeting");
         postsController = this;
         postDAO = new PostDAO();
         KeyFrame update = new KeyFrame( Duration.minutes( ConstantSetting.UPDATE_PERIOD_MIN ), event -> {
@@ -79,6 +80,7 @@ public class PostsController implements Initializable {
             }
             if (count > 0) {
                 updateCountLabel.setText( "new " + String.valueOf( count ) );
+                updateCountLabel.setId("newNum");
             } else if (count == 0) {
                 updateCountLabel.setText("");
             }
@@ -91,12 +93,14 @@ public class PostsController implements Initializable {
         hintLabel.setId( "hintLabel" );
         postDataList = FXCollections.observableArrayList();
         page = 0;
-        postDataList.addAll(postDAO.getPosts(page));
+        postDataList.addAll(postDAO.getPosts(page++));
         postListView = new JFXListView<>();
         postListView.setId( "postListView" );
         postListView.getStyleClass().add( "table-view" );
         postListView.setItems( postDataList );
-        postListView.setCellFactory( param -> new PostCellFactory() );
+        postListView.setCellFactory(param -> {
+            return new PostCellFactory();
+        });
         if (postDataList.size() != 0) {
             postsBorderPane.setCenter( postListView );
         } else {
@@ -104,7 +108,7 @@ public class PostsController implements Initializable {
         }
     }
 
-    public void handleNewPostBtnAction() throws IOException {
+    public boolean handleNewPostBtnAction() throws IOException {
         Main.getApp().getStage().setOnCloseRequest( event1 -> NEW_POST_STAGE.close() );
         Parent target = FXMLLoader.load( getClass().getResource( "/fxml/new_post.fxml" ) );
         Scene scene = new Scene( target );
@@ -114,14 +118,17 @@ public class PostsController implements Initializable {
         NEW_POST_STAGE.setScene( scene );
         NEW_POST_STAGE.setOnCloseRequest( event1 -> refresh() );
         NEW_POST_STAGE.show();
+        return true;
     }
 
-    public void handleRefreshBtnAction() {
+    public boolean handleRefreshBtnAction() {
         refresh();
+        return true;
     }
 
-    public void handleLoadMoreBtnAction() {
+    public boolean handleLoadMoreBtnAction() {
         postDataList.addAll( postDAO.getPosts( ++page ) );
+        return true;
     }
 
     void refresh() {
@@ -133,8 +140,9 @@ public class PostsController implements Initializable {
         }
     }
 
-    public void handleLogOutBtnAction() {
+    public boolean handleLogOutBtnAction() {
         Main.getApp().setUser( null );
         Main.getApp().startUp();
+        return true;
     }
 }

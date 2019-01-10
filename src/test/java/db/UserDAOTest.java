@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.util.Random;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class UserDAOTest {
@@ -27,14 +28,26 @@ public class UserDAOTest {
         assertTrue(register);
     }
 
-    //
 //    @Test(expected = SQLException.class)
-//    public void disconnect_sql_when_register() {
-//        UserDAO userDAO=Mockito.mock(UserDAO.class);
-//        userDAO.doThrow(new SQLException());
-////        assertFalse(register);
+//    public void disconnect_sql_when_register() throws NoSuchFieldException {
+//        UserDAO userDao=new UserDAO();
+//        try{
+//            Field field = UserDAO.class.getDeclaredField("con");
+//            field.setAccessible(true);
+//            field.set(userDao, null);
+//        }catch (IllegalAccessException e){
+//            e.printStackTrace();
+//        }
+//        //doThrow(SQLException.class).when(userDAO).register("qqq123l","dd112211");
+//        userDao.register("qqq123l","dd112211");
 //    }
+
     @Test
-    public void getAccount() {
+    public void get_account_will_return_one_or_zero_account() {
+        UserDAO userDAO = new UserDAO();
+        int account = userDAO.getAccount("qqq123", "dd112211");
+        assertEquals(1, account);
+        int noaccount = userDAO.getAccount("qqq", "dd112211");
+        assertEquals(0, noaccount);
     }
 }

@@ -25,14 +25,16 @@ public class LoadMoreTest extends ApplicationTest {
         clickOn("#passwordField").write(TestConstants.PASSWORD);
         clickOn("#signInButton");
         clickOn("#closeBtn");
-        WaitForAsyncUtils.sleep(2, TimeUnit.SECONDS);
+        WaitForAsyncUtils.sleep(1, TimeUnit.SECONDS);
     }
 
     @Test
-    public void load_more_posts() {
+    public void load_more_posts() throws InterruptedException {
         clickOn("#loadMoreBtn");
+        for (int i = 0; i < 25; i++)
+            doubleClickOn(950, 685);
         verifyThat(lookup("#postBox").nth(3), isVisible());
         verifyThat(lookup("#postBox").nth(4), isVisible());
-        verifyThat(lookup("#postBox").nth(5), isVisible());
     }
+
 }

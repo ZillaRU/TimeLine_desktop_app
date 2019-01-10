@@ -9,9 +9,7 @@ import org.junit.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
-import org.testfx.util.WaitForAsyncUtils;
 
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import static org.junit.Assert.assertFalse;
@@ -58,7 +56,7 @@ public class LoginTest extends ApplicationTest {
         robot.clickOn("#nameField").write("wrongusr");
         robot.clickOn("#passwordField").write("dd112211");
         robot.clickOn("#signInButton");
-        WaitForAsyncUtils.sleep(1, TimeUnit.SECONDS);
+        //  WaitForAsyncUtils.sleep( 1, TimeUnit.SECONDS );
         verifyThat("#closeBtn", isVisible());
         verifyThat("#headLabel", hasText("Prompt"));
         verifyThat("#contentLabel", hasText("Wrong username and/or password"));

@@ -51,7 +51,7 @@ public class Main extends Application {
                     Connection c = null;
                     c = DBConnector.getInstance().createConnection( ConstantSetting.DB_URL,
                             ConstantSetting.DB_USER, ConstantSetting.DB_PASSWORD, ConstantSetting.DB_NAME );
-                    if (c.isClosed()) {
+                    if (c == null) {
                         Alert alert = new Alert( Alert.AlertType.WARNING,
                                 "The program could not connect\nto DB with default settings.\nCheck DB-Setting" );
                         alert.show();

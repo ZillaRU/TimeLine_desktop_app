@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  */
 public class AlertHelper {
 
-    public static void showJDialog(Stage stage, String head, String body) {
+    public void showJDialog(Stage stage, String head, String body) {
         JFXDialogLayout dialogContent = new JFXDialogLayout();
         Label text1 = new Label( head );
         text1.setId( "headLabel" );

@@ -27,7 +27,7 @@ public class DBConnector {
         System.out.println( "createConnection" );
         if (conn != null) {
             System.out.println( "conn != null" );
-            conn.close();
+            return conn;
         }
         try {
             System.out.println( "try" );

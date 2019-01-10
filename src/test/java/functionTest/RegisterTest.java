@@ -48,7 +48,7 @@ public class RegisterTest extends ApplicationTest {
         WaitForAsyncUtils.sleep(3, TimeUnit.SECONDS);
         clickOn("#nameField").write("qq");//过短
         clickOn("#signUpJFXButton");
-        WaitForAsyncUtils.sleep(1, TimeUnit.SECONDS);
+        WaitForAsyncUtils.sleep(2, TimeUnit.SECONDS);
         verifyThat("#contentLabel", hasText("Username format error.\nOnly contain 0-9,a-z,A-Z length: 6-18"));
         clickOn("#closeBtn");
         WaitForAsyncUtils.sleep(2, TimeUnit.SECONDS);

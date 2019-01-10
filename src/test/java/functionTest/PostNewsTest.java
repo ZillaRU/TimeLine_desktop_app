@@ -14,16 +14,15 @@ import org.testfx.framework.junit.ApplicationTest;
 
 import java.util.concurrent.TimeoutException;
 
+import static org.junit.Assert.assertNotNull;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.base.NodeMatchers.isVisible;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
-
 public class PostNewsTest extends ApplicationTest {
-    private static final Logger LOG = LoggerFactory.getLogger(PostNewsTest.class);
     Stage stage1;
-    Application main1;
+    private static final Logger LOG = LoggerFactory.getLogger(PostNewsTest.class);
     private int stepNo;
-
+    Application main1;
     @Before
     public void setup() throws Exception {
         stage1 = FxToolkit.registerPrimaryStage();
@@ -42,7 +41,6 @@ public class PostNewsTest extends ApplicationTest {
 
     @Test
     public void post_with_no_image_and_comments_and_show_just_now() {
-        //todo:post->submit->close->verify
         step("Open application", () -> {
             verifyThat("#newPostBtn", isVisible());
         });
@@ -65,7 +63,6 @@ public class PostNewsTest extends ApplicationTest {
 
     @Test
     public void post_with_images_and_comments_and_show_just_now() {
-        //todo:post->submit->close->verify
         step("Open application", () -> {
             verifyThat("#newPostBtn", isVisible());
         });
@@ -82,6 +79,7 @@ public class PostNewsTest extends ApplicationTest {
             verifyThat(lookup("#username").nth(0), hasText(TestConstants.USERNAME));
             verifyThat(lookup("#content").nth(0), hasText(TestConstants.TESTTEXT));
             verifyThat(lookup("#updateTime").nth(0), hasText("Just now"));
+            assertNotNull(lookup("#imageBox").nth(0));
             clickOn("#closeBtn");
         });
     }

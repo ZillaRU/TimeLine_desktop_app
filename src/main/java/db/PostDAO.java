@@ -39,11 +39,8 @@ public class PostDAO {
                         String originImageName = file.getName();
                         String newImageName = IdGenerator.getId() + "."
                                 + originImageName.substring( originImageName.lastIndexOf( "." ) + 1 );
+                        File ca = new File("./post_images");
                         inputStream = new FileInputStream( file );
-                        File ca = new File( "./post_images" );
-                        if (!ca.exists()) {
-                            ca.mkdirs();
-                        }
                         outputStream = new FileOutputStream( ConstantSetting.POST_IMAGE_PATH + newImageName );
                         byte[] buffer = new byte[1024];
                         int cnt = 0;
@@ -76,7 +73,7 @@ public class PostDAO {
         try {
             PreparedStatement preparedStatement = con.prepareStatement( stmt );
             ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet != null) {
+//            if (resultSet != null) {
                 try {
                     while (resultSet.next()) {
                         String postID = resultSet.getString( "postID" );
@@ -104,11 +101,11 @@ public class PostDAO {
                         }
                         resultList.add( post );
                     }
-                    return resultList;
+//                    return resultList;
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-            }
+//            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
