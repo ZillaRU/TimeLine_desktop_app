@@ -1,0 +1,59 @@
+/*
+ * LoadRunner Java script. (Build: _build_number_)
+ * 
+ * Script Description: test log in
+ *                     
+ */
+
+import lrapi.lr;
+import home.*;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import model.*;
+import db.*;
+import java.util.Random;
+
+public class Actions
+{
+
+	Connection c;
+
+	public int init() throws Throwable {
+		if (DBConnector.getInstance().getConnection() == null || DBConnector.getInstance().getConnection().isClosed()) {
+           c = DBConnector.getInstance().createConnection( ConstantSetting.DB_URL,
+                   ConstantSetting.DB_USER, ConstantSetting.DB_PASSWORD, ConstantSetting.DB_NAME );
+           if (c==null||c.isClosed()) {
+               lr.message("The program could not connect\nto DB with default settings.\nCheck DB-Setting");
+           } else {
+               lr.message("--------------------connected---------------------");
+           }
+        }
+		return 0;
+	}//end of init
+
+
+	public int action() throws Throwable {
+		lr.start_transaction("log_in");
+		UserDAO userDao=new UserDAO();
+		lr.think_time(5);
+		int r=new Random().nextInt( 900 );
+		String name= "TEST" + r;
+		String password= "test" + r;
+		int accCount = userDao.getAccount( name , password);
+		if(accCount==1){
+			lr.message(name +"  "+ password +" log in successfully");
+			lr.end_transaction("log_in", lr.PASS);
+		}else if(accCount==0){
+			lr.message("No user found");
+			lr.end_transaction("log_in", lr.PASS);
+		}else
+			lr.end_transaction("log_in", lr.FAIL); 
+		return 0;
+	}//end of action
+
+
+	public int end() throws Throwable {
+		return 0;
+	}//end of end
+}

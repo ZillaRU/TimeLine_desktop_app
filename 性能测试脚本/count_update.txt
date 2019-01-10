@@ -1,0 +1,56 @@
+/*
+ * LoadRunner Java script. (Build: _build_number_)
+ * 
+ * Script Description: count_update
+ *                     
+ */
+
+import lrapi.lr;
+import home.*;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import model.*;
+import db.*;
+import utils.*;
+
+public class Actions
+{
+	Connection c;
+
+	public int init() throws Throwable {
+		if (DBConnector.getInstance().getConnection() == null || DBConnector.getInstance().getConnection().isClosed()) {
+           c = DBConnector.getInstance().createConnection( ConstantSetting.DB_URL,
+                   ConstantSetting.DB_USER, ConstantSetting.DB_PASSWORD, ConstantSetting.DB_NAME );
+           if (c==null||c.isClosed()) {
+               lr.message("The program could not connect\nto DB with default settings.\nCheck DB-Setting");
+           } else {
+               lr.message("--------------------connected---------------------");
+           }
+        }
+		return 0;
+	}//end of init
+
+	public int action() throws Throwable {
+		PostDAO postDao=new PostDAO();
+		int page=0;
+		List<Post> posts=postDao.getPosts(page);
+		lr.message("post num of this page : "+posts.size());
+		for(int j=0;j<posts.size();j++){
+			lr.message(posts.get(j).getContent());
+		}
+		for(int i=0;i<5;i++){
+			lr.think_time(6);
+			lr.start_transaction("count_update");
+			int countNew = postDao.countUpdate(posts.get(0).getTimeStamp());
+			lr.end_transaction("count_update",lr.PASS);
+		}
+	
+		return 0;
+	}//end of action
+
+
+	public int end() throws Throwable {
+		return 0;
+	}//end of end
+}

@@ -1,0 +1,76 @@
+/*
+ * LoadRunner Java script. (Build: _build_number_)
+ * 
+ * Script Description: test new post with images
+ *                     
+ */
+
+import lrapi.lr;
+import home.*;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import model.*;
+import db.*;
+import utils.*;
+import java.util.Random;
+import java.io.File;
+
+public class Actions
+{
+	UserDAO userDao;
+	Connection c;
+	User currUser;
+	String password;
+
+	public int init() throws Throwable {
+		if (DBConnector.getInstance().getConnection() == null || DBConnector.getInstance().getConnection().isClosed()) {
+           c = DBConnector.getInstance().createConnection( ConstantSetting.DB_URL,
+                   ConstantSetting.DB_USER, ConstantSetting.DB_PASSWORD, ConstantSetting.DB_NAME );
+           if (c==null||c.isClosed()) {
+               lr.message("The program could not connect\nto DB with default settings.\nCheck DB-Setting");
+           } else {
+               lr.message("--------------------connected---------------------");
+           }
+        }
+		userDao=new UserDAO();
+		lr.think_time(5);
+		currUser=new User("zillah717");
+		password= "zillah717";
+		
+		return 0;
+	}//end of init
+
+
+	public int action() throws Throwable {
+		lr.start_transaction("log_in");
+		int accCount = userDao.getAccount( currUser.getUserID() , password);
+		lr.end_transaction("log_in", lr.PASS);
+		if(accCount==1){
+			lr.message(currUser.getUserID() +"  "+ password +" log in successfully");
+			
+			lr.start_transaction("new_post");
+	        PostDAO postDao=new PostDAO();
+	        lr.think_time(15);
+	        List<File> imageFileList=new ArrayList<>();//with images
+	        imageFileList.add(new File("pic1.png"));
+	        Post newPost = new Post( IdGenerator.getId(), currUser.getUserID(),
+                null, true, IdGenerator.getId()+"test content");
+            if (new PostDAO().addPost( newPost, imageFileList )) {
+	        	lr.message("-------------post sent successfully------------");
+	        	lr.end_transaction("new_post", lr.PASS);
+	        }else{
+	        	lr.message("-------------post failed------------");
+	        	lr.end_transaction("new_post", lr.FAIL);
+	        }
+		}else if(accCount==0){
+			lr.message("No user found");
+		}
+		return 0;
+	}//end of action
+
+
+	public int end() throws Throwable {
+		return 0;
+	}//end of end
+}
