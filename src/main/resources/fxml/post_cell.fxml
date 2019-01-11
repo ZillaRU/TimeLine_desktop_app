@@ -5,8 +5,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <fx:root xmlns:fx="http://javafx.com/fxml" type="com.jfoenix.controls.JFXListCell">
-    <VBox fx:id="postBox" prefWidth="470" prefHeight="182" spacing="8">
-        <VBox spacing="6" prefWidth="470" prefHeight="155">
+    <VBox fx:id="postBox" prefWidth="467" prefHeight="182" spacing="8">
+        <VBox spacing="6" prefWidth="467" prefHeight="155">
             <children>
                 <Label fx:id="username"
                        styleClass="post_item" textFill="dimgray"/>

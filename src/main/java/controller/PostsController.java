@@ -95,6 +95,7 @@ public class PostsController implements Initializable {
         page = 0;
         postDataList.addAll(postDAO.getPosts(page++));
         postListView = new JFXListView<>();
+        postListView.setPrefWidth(467.0);
         postListView.setId( "postListView" );
         postListView.getStyleClass().add( "table-view" );
         postListView.setItems( postDataList );
@@ -135,6 +136,7 @@ public class PostsController implements Initializable {
         postDataList.clear();
         page = 0;
         postDataList.addAll( postDAO.getPosts( page ) );
+        updateCountLabel.setText("");
         if (postsBorderPane.getCenter() == null || postDataList.size() != 0) {
             postsBorderPane.setCenter( postListView );
         }
