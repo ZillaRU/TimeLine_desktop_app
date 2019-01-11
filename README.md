@@ -1,5 +1,7 @@
-## 运行环境：JDK1.8   MYSQL8.0.11  修改`ConstantSetting.java`中的`db_user`,`db_passsword`,  运行`DbCreator.java`即可
-## 性能测试配置：Loadrunner12.55  新建脚本，选择`java vuser`，脚本内容见`性能测试脚本`，在`runtime setting`处导入`TimeLine-1.0-SNAPSHOT.jar`，即可创建scenario进行并发测试。
+## 运行环境：JDK1.8   MYSQL8.0.11  
+修改`ConstantSetting.java`中的`db_user`,`db_passsword`,  运行`DbCreator.java`即可
+## 性能测试配置：Loadrunner12.55  
+新建脚本，选择`java vuser`，脚本内容见`性能测试脚本`，在`runtime setting`处导入`TimeLine-1.0-SNAPSHOT.jar`，即可创建scenario进行并发测试。
 
 
 ## 一点总结
